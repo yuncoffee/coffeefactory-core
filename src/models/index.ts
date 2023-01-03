@@ -1,1 +1,1 @@
-declare module "*.scss"
+export * from "./components"

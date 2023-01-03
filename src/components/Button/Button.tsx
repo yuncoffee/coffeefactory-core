@@ -1,8 +1,6 @@
 import React, { ForwardedRef, forwardRef } from "react"
-import { ButtonProps } from "../../models/components/Button"
-import styles from "./Button.module.scss"
-
-export { ButtonProps }
+import s from "./Button.module.scss"
+import { ButtonProps } from "@model/components/Button"
 
 const Button = (
     {
@@ -10,18 +8,22 @@ const Button = (
         onClick = () => {
             console.log("helloworld!")
         },
+        name,
+        children,
         ...props
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
 ) => {
     return (
         <button
-            className={styles.button}
+            className={s.button}
             {...props}
             ref={ref}
             onClick={onClick}
+            name={name ? name : buttonName}
         >
-            {buttonName}
+            {!children && buttonName}
+            {children}
         </button>
     )
 }

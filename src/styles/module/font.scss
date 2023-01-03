@@ -1,0 +1,5 @@
+@use "../mixin/mixin.scss";
+
+h1 {
+    @include mixin.font();
+}

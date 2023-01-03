@@ -4,9 +4,15 @@ import { render } from "@testing-library/react"
 
 describe("button", () => {
     test("renders the Button Component", () => {
-        render(<Button buttonName="name" />)
+        render(<Button buttonName="name" onClick={() => {}} />)
     })
     test("props test", () => {
-        render(<Button buttonName="name" data-size="sekrjwk" />)
+        render(
+            <>
+                <Button buttonName="name" onClick={() => {}}>
+                    hello!
+                </Button>
+            </>
+        )
     })
 })

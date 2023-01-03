@@ -1,3 +1,37 @@
+@import "./module/reset.scss";
+@import "./module/font.scss";
+
 body {
     background: teal;
+}
+
+
+
+
+@keyframes fontAni-wght {
+    0% {
+        font-variation-settings: 'wght' 100;
+
+    }
+
+    50% {
+        font-variation-settings: 'wght' 900;
+
+    }
+
+    100% {
+        font-variation-settings: 'wght' 100;
+
+    }
+}
+
+[s-font-ani="wght"] {
+    animation: fontAni-wght 2s ease-in-out infinite;
+}
+
+.sb-container {
+    padding: 16px;
+    width: calc(100% - 32px);
+    border: 1px solid;
+    margin: 0;
 }
