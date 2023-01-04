@@ -1,8 +1,9 @@
 import React from "react"
 import { ComponentMeta } from "@storybook/react"
-import Button, { ButtonProps } from "./Button"
-import InputText from "../Input/InputText"
+import Button from "./Button"
+import Input from "../Input/Input"
 import { action } from "@storybook/addon-actions"
+import { ButtonProps } from "@model/components/Button"
 
 export const Template = ({ ...props }: ButtonProps) => {
     return <Button {...props} />
@@ -41,7 +42,8 @@ export const Test = () => {
 
 export const Testtest = () => {
     return (
-        <InputText
+        <Input
+            data-s-font={"800"}
             className="helloworld! i am"
             // onChange={(event) => {
             //     console.log(event.target.value)

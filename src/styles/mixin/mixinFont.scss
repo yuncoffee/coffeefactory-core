@@ -1,0 +1,46 @@
+@mixin font($size : 1.6rem, $height: 1.5em, $weight : 400, $spacing : 0) {
+    font-size: $size;
+    line-height: $height;
+    font-weight: $weight;
+    letter-spacing: $spacing;
+}
+
+@mixin font1000() {
+    @include font($size: 3.6rem, $height : 1.3334em, $weight: 600);
+}
+
+@mixin font900() {
+    @include font($size: 3.2rem, $height : 1.25em, $weight : 500);
+}
+
+@mixin font800() {
+    @include font($size: 2.8rem, $height : 1.2858em);
+}
+
+@mixin font700() {
+    @include font($size: 2.4rem, $height : 1.3334em);
+}
+
+@mixin font600() {
+    @include font($size: 2rem, $height : 1.2em);
+}
+
+@mixin font500() {
+    @include font($size: 1.6rem, $height : 1.25em);
+}
+
+@mixin font400() {
+    @include font($size: 1.4rem, $height : 1.4286em);
+}
+
+@mixin font300() {
+    @include font($size: 1.2rem);
+}
+
+@mixin font200() {
+    @include font($size: 1rem, $height : 1.4em);
+}
+
+@mixin font100() {
+    @include font($size: .8rem);
+}

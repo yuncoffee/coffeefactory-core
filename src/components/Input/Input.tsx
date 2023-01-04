@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef } from "react"
-import { InputProps } from "../../models/components/Input"
+import { InputProps } from "@model/components/Input"
 import s from "./Input.module.scss"
 
-function InputText(
+function Input(
     { type = "text", className, ...props }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -16,4 +16,4 @@ function InputText(
     )
 }
 
-export default forwardRef(InputText)
+export default forwardRef(Input)
