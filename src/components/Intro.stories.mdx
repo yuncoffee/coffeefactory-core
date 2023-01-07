@@ -1,32 +1,37 @@
 import { Meta } from "@storybook/addon-docs"
+import { SIZE_LIST } from "../data"
 
 <Meta title="Introduction" />
-
-# Welcome to Storybook
 
 Storybook helps you build UI components in isolation from your app's business logic, data, and context.
 That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
 
 <h1>Foundation</h1>
 
-<h3 data-s-font="700">font</h3>
+<h2 data-s-font="700">font</h2>
 
 <section className="sb-container">
-
-<div data-s-font="1000">font 1000</div>
-<h1 data-s-font="900">font 900</h1>
-<div data-s-font="800">font 800</div>
-<h2 data-s-font="700">font 700</h2>
-<h3 data-s-font="600">font 600</h3>
-<h4 data-s-font="500">font 500</h4>
-<h5 data-s-font="400">font 400</h5>
-<h6 data-s-font="300">font 300</h6>
-<div data-s-font="200">font 200</div>
-<div data-s-font="100">font 100</div>
+    <div data-s-box="v-box" data-s-gap="8px">
+        <div data-s-font="1000">font 1000</div>
+        <h1 data-s-font="900">font 900</h1>
+        <div data-s-font="800">font 800</div>
+        <h2 data-s-font="700">font 700</h2>
+        <h3 data-s-font="600">font 600</h3>
+        <h4 data-s-font="500">font 500</h4>
+        <h5 data-s-font="400">font 400</h5>
+        <h6 data-s-font="300">font 300</h6>
+        <div data-s-font="200">font 200</div>
+        <div data-s-font="100">font 100</div>
+    </div>
 </section>
 
 <br />
 
+<h2>size</h2>
 <section className="sb-container">
-    <div data-s-size="xxl" style={{ background: "tomato" }} />
+    <div data-s-box="v-box" data-s-gap="8px">
+        {SIZE_LIST.map((size, index) => {
+            return <div data-s-size={size} style={{ background: "tomato" }} />
+        })}
+    </div>
 </section>

@@ -1,81 +1,16 @@
-@use "../mixin/mixin.scss";
-@use "../var/var.scss";
+@use "../mixin/mixin";
+@use "../var/var";
 
-$fontScaleList : "1000",
-"900",
-"800",
-"700",
-"600",
-"500",
-"400",
-"300",
-"200",
-"100";
-
-h1 {
-    @include mixin.font900;
+@each $key,
+$value in var.$fontList {
+    [data-s-font="#{$key}"] {
+        @include mixin.fontFactory($value);
+    }
 }
 
-h2 {
-    @include mixin.font700;
-}
-
-h3 {
-    @include mixin.font600;
-}
-
-h4 {
-    @include mixin.font500;
-}
-
-h5 {
-    @include mixin.font400;
-}
-
-h6 {
-    @include mixin.font300;
-}
-
-@each $font in $fontScaleList {
-    [data-s-font="#{$font}"] {
-        @if $font =="1000" {
-            @include mixin.font1000;
-        }
-
-        @else if $font =="900" {
-            @include mixin.font900;
-        }
-
-        @else if $font =="800" {
-            @include mixin.font800;
-        }
-
-        @else if $font =="700" {
-            @include mixin.font700;
-        }
-
-        @else if $font =="600" {
-            @include mixin.font600;
-        }
-
-        @else if $font =="500" {
-            @include mixin.font500;
-        }
-
-        @else if $font =="400" {
-            @include mixin.font400;
-        }
-
-        @else if $font =="300" {
-            @include mixin.font300;
-        }
-
-        @else if $font =="200" {
-            @include mixin.font200;
-        }
-
-        @else {
-            @include mixin.font100;
-        }
+@each $key,
+$value in var.$headingList {
+    #{$key} {
+        @include mixin.fontFactory($value);
     }
 }

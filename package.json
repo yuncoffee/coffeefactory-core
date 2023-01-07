@@ -3,7 +3,7 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/yuncoffee"
     },
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "coffee's personal react base design system library",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",

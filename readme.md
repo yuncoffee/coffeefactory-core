@@ -1,1 +1,1 @@
-CoffeeFactory Auth Key(Only Read) = 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
+CoffeeFactory Auth Key(Only Read) = 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

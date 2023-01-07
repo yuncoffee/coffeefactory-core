@@ -14,6 +14,9 @@ rules:
     variable-name-format:
         - 1
         - convention: "camelcase"
+    mixin-name-format:
+        - 1
+        - convention: "camelcase"
     quotes:
         - 1
         - style: double

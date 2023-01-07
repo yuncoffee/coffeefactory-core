@@ -1,0 +1,121 @@
+@use "../var/var";
+
+@each $box in var.$flexBoxList {
+
+    [data-s-box="#{$box}"] {
+        display: flex;
+
+        @if $box =="v-box" {
+            flex-direction: column;
+        }
+    }
+}
+
+@for $index from map-get(var.$pxSpaceList, "min") through map-get(var.$pxSpaceList, "max") {
+
+    // gap 설정
+    @if map-get(var.$pxSpaceList, "option")=="even" {
+        @if $index % 2==0 {
+            [data-s-gap="#{$index}px"] {
+                gap: #{$index}px;
+            }
+        }
+    }
+
+    @else if map-get(var.$pxSpaceList, "option")=="odd" {
+        @if $index % 2==1 {
+            [data-s-gap="#{$index}px"] {
+                gap: #{$index}px;
+            }
+        }
+    }
+
+    @else {
+        [data-s-gap="#{$index}px"] {
+            gap: #{$index}px;
+        }
+    }
+
+    // space 설정
+    @each $key,
+    $value in var.$spaceDirectionList {
+        @each $space in var.$spaceTypeList {
+
+            // left, right, top, btm이 있을 경우
+            @if $value !=null {
+                @if $key =="x" {
+                    [data-s-#{$space}-#{$key}="#{$index}px"] {
+                        #{$space}: #{$index}px 0;
+                    }
+                }
+
+                @else if $key =="y" {
+                    [data-s-#{$space}-#{$key}="#{$index}px"] {
+                        #{$space}: 0 #{$index}px;
+                    }
+                }
+
+                @else {
+                    [data-s-#{$space}-#{$key}="#{$index}px"] {
+                        #{$space}-#{$value} : #{$index}px;
+                    }
+
+                    [data-s-#{$key}="#{$index}px"] {
+                        #{$value}: #{$index}px;
+                    }
+                }
+            }
+
+            // 통합
+            @else {
+                [data-s-#{$space}="#{$index}px"] {
+                    #{$space} : #{$index}px;
+                }
+
+            }
+        }
+
+    }
+}
+
+@each $name,
+$value in var.$pxBorderWeightList {
+    [data-s-border="#{$name}"] {
+        border: #{$value} solid;
+    }
+
+    @each $style in var.$borderStyleList {
+
+        @each $direction,
+        $dirValue in var.$spaceDirectionList {
+
+            @if $dirValue !=null {
+
+                @if $direction =="x" {
+                    [data-s-border-#{$direction}="#{$name} #{$style}"] {
+                        border: #{$value} 0 #{$style};
+                    }
+                }
+
+                @else if $direction =="y" {
+                    [data-s-border-#{$direction}="#{$name} #{$style}"] {
+                        border: 0 #{$value} #{$style};
+                    }
+                }
+
+                @else {
+                    [data-s-border-#{$direction}="#{$name} #{$style}"] {
+                        border-#{$dirValue}: #{$value} #{$style};
+                    }
+                }
+            }
+
+            @else {
+                [data-s-border="#{$name} #{$style}"] {
+                    border: #{$value} #{$style};
+                }
+            }
+        }
+    }
+
+}

@@ -1,6 +1,8 @@
+@use "./var/var";
 @import "./module/reset";
 @import "./module/font";
 @import "./module/size";
+@import "./module/space";
 
 @keyframes fontAni-wght {
     0% {
@@ -25,4 +27,19 @@
     border: 1px solid;
     margin: 0;
     padding: 16px;
+}
+
+:root {
+
+    @each $name,
+    $value in var.$sizeList {
+        --#{$name}: #{$value};
+    }
+
+    @each $name,
+    $value in var.$pxBorderWeightList {
+        --border-weight-#{$name}: #{$value};
+    }
+
+
 }

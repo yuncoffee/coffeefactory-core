@@ -1,24 +1,116 @@
-@use "../mixin/mixin.scss";
-
-$xxl: 54px;
-$xl: 48px;
-$lg: 40px;
-$mid: 36px;
-$sm: 32px;
-$xs: 28px;
-$xxs: 24px;
-
-
-// stylelint-disable
-// sass-lint:disable-all
-$sizeList: (
-    ) !default;
-
-$sizeList: map-merge(("xxl": ($xxl),
-            "xl": ($xl),
-            "lg": ($lg),
-            "mid": ($mid),
-            "sm": ($sm),
-            "xs": ($xs),
-            "xxs": ($xxs)), $sizeList
+$font1000: (
+    "size": 3.6rem,
+    "height": 1.33334em,
+    "weight": 600
 );
+
+$font900: (
+    "size": 3.2rem,
+    "height": 1.25em,
+    "weight": 500
+);
+
+$font800: (
+    "size": 2.8rem,
+    "height": 1.2858em,
+);
+
+$font700: (
+    "size": 2.4rem,
+    "height": 1.3334em,
+);
+
+$font600: (
+    "size": 2rem,
+    "height": 1.2em,
+);
+
+
+$font500: (
+    "size": 1.6rem,
+    "height": 1.25em,
+);
+
+
+$font400: (
+    "size": 1.4rem,
+    "height": 1.4286em,
+);
+
+
+$font300: (
+    "size": 1.2rem,
+);
+
+$font200: (
+    "size": 1rem,
+    "height": 1.4em,
+);
+
+$font100: (
+    "size": .8rem,
+);
+
+$fontList: (
+    "1000": $font1000,
+    "900": $font900,
+    "800": $font800,
+    "700": $font700,
+    "600": $font600,
+    "500": $font500,
+    "400": $font400,
+    "300": $font300,
+    "200": $font200,
+    "100": $font100
+);
+
+$headingList: (
+    "h1": $font900,
+    "h2": $font700,
+    "h3": $font600,
+    "h4": $font500,
+    "h5": $font400,
+    "h6": $font300,
+    "p": $font400
+);
+
+$sizeList: (
+    "xxl": 54px,
+    "xl": 48px,
+    "lg": 40px,
+    "mid": 36px,
+    "sm": 32px,
+    "xs": 28px,
+    "xxs": 24px
+);
+
+
+$pxSpaceList: (
+    "min": 1,
+    "max": 64,
+    "option": "even" // | "even" | "odd" | null
+);
+
+$spaceDirectionList: (
+    "left": "left",
+    "right": "right",
+    "top": "top",
+    "btm": "bottom",
+    "full": null,
+    "x": "x",
+    "y": "y",
+);
+
+$spaceTypeList: "padding", "margin";
+
+
+$pxBorderWeightList: (
+    "light": 1px,
+    "regular": 2px,
+    "bold": 4px,
+    "extraBold": 6px
+);
+
+$borderStyleList: "solid", "dotted", "dashed", "double";
+
+$flexBoxList: "h-box", "v-box";

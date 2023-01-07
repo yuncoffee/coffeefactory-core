@@ -32,7 +32,7 @@ export default [
                 exclude: ["src/stories", "**/*.stories.tsx", "**/*.test.tsx"],
             }),
             // copy({ targets: [{ src: "src/models/type.d.ts", dest: "dist/" }] }),
-            postcss({ extract: true }),
+            postcss({ extract: true, minimize: true }),
             terser(),
         ],
     },
