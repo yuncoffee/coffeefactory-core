@@ -1,0 +1,19 @@
+files:
+    ignore:
+        - "node_modules/**/*.*"
+        - "src/styles/module/reset.scss"
+
+linters:
+rules:
+    final-newline:
+        - 0
+    function-name-format: 0
+    indentation:
+        - 1
+        - size: 4
+    variable-name-format:
+        - 1
+        - convention: "camelcase"
+    quotes:
+        - 1
+        - style: double

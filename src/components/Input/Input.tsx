@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from "react"
+import React, { ForwardedRef, HTMLInputTypeAttribute, forwardRef } from "react"
 import { InputProps } from "@model/components/Input"
 import s from "./Input.module.scss"
 

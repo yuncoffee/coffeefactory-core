@@ -1,0 +1,11 @@
+@use "../var/var";
+
+@each $name,
+$map in var.$sizeList {
+    @each $value in $map {
+        [data-s-size=#{$name}] {
+            min-height : #{$value};
+            min-width: #{$value};
+        }
+    }
+}

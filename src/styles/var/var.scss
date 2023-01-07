@@ -1,10 +1,24 @@
-$fontList : "1000",
-"900",
-"800",
-"700",
-"600",
-"500",
-"400",
-"300",
-"200",
-"100";
+@use "../mixin/mixin.scss";
+
+$xxl: 54px;
+$xl: 48px;
+$lg: 40px;
+$mid: 36px;
+$sm: 32px;
+$xs: 28px;
+$xxs: 24px;
+
+
+// stylelint-disable
+// sass-lint:disable-all
+$sizeList: (
+    ) !default;
+
+$sizeList: map-merge(("xxl": ($xxl),
+            "xl": ($xl),
+            "lg": ($lg),
+            "mid": ($mid),
+            "sm": ($sm),
+            "xs": ($xs),
+            "xxs": ($xxs)), $sizeList
+);

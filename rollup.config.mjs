@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import typescript from "@rollup/plugin-typescript"
 import dts from "rollup-plugin-dts"
+import copy from "rollup-plugin-copy"
 import postcss from "rollup-plugin-postcss"
 import terser from "@rollup/plugin-terser"
 import peerDepsExternal from "rollup-plugin-peer-deps-external"
@@ -30,6 +31,7 @@ export default [
                 tsconfig: "./tsconfig.json",
                 exclude: ["src/stories", "**/*.stories.tsx", "**/*.test.tsx"],
             }),
+            // copy({ targets: [{ src: "src/models/type.d.ts", dest: "dist/" }] }),
             postcss({ extract: true }),
             terser(),
         ],

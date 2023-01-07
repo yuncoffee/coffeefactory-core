@@ -1,0 +1,13 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-standard-scss",
+        "stylelint-config-prettier",
+        "stylelint-config-prettier-scss"
+    ],
+    "ignoreFiles": ["**/reset.scss"],
+    "rules": {
+        "scss/dollar-variable-pattern": null,
+        "keyframes-name-pattern": null
+    }
+}

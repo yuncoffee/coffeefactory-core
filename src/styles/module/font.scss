@@ -1,5 +1,5 @@
-@use "../var/var.scss";
 @use "../mixin/mixin.scss";
+@use "../var/var.scss";
 
 $fontScaleList : "1000",
 "900",
@@ -16,8 +16,27 @@ h1 {
     @include mixin.font900;
 }
 
+h2 {
+    @include mixin.font700;
+}
 
-@each $font in var.$fontList {
+h3 {
+    @include mixin.font600;
+}
+
+h4 {
+    @include mixin.font500;
+}
+
+h5 {
+    @include mixin.font400;
+}
+
+h6 {
+    @include mixin.font300;
+}
+
+@each $font in $fontScaleList {
     [data-s-font="#{$font}"] {
         @if $font =="1000" {
             @include mixin.font1000;

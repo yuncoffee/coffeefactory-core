@@ -1,26 +1,18 @@
-@import "./module/reset.scss";
-@import "./module/font.scss";
-
-body {
-    background: teal;
-}
-
-
-
+@import "./module/reset";
+@import "./module/font";
+@import "./module/size";
 
 @keyframes fontAni-wght {
     0% {
-        font-variation-settings: 'wght' 100;
-
+        font-variation-settings: "wght" 100;
     }
 
     50% {
-        font-variation-settings: 'wght' 900;
-
+        font-variation-settings: "wght" 900;
     }
 
     100% {
-        font-variation-settings: 'wght' 100;
+        font-variation-settings: "wght" 100;
 
     }
 }
@@ -30,7 +22,7 @@ body {
 }
 
 .sb-container {
-    padding: 16px;
     border: 1px solid;
     margin: 0;
+    padding: 16px;
 }
