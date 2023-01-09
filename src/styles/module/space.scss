@@ -1,13 +1,46 @@
 @use "../var/var";
 
-@each $box in var.$flexBoxList {
 
-    [data-s-box="#{$box}"] {
+@each $option in var.$displayList {
+    [data-s-display="#{$option}"] {
+        display: #{$option};
+    }
+}
+
+@each $option in var.$flexBoxList {
+
+    [data-s-box="#{$option}"] {
         display: flex;
 
-        @if $box =="v-box" {
+        @if $option =="v-box" {
             flex-direction: column;
         }
+    }
+}
+
+@each $option in var.$alignItemsList {
+    [data-s-align="#{$option}"] {
+        align-items: #{$option};
+    }
+}
+
+@each $option in var.$justifyContentsList {
+    [data-s-justify="#{$option}"] {
+        justify-content: #{$option};
+    }
+}
+
+@each $option in var.$overflowList {
+    [data-s-overflow="#{$option}"] {
+        overflow: #{$option};
+    }
+
+    [data-s-overflow-x="#{$option}"] {
+        overflow: #{$option};
+    }
+
+    [data-s-overflow-y="#{$option}"] {
+        overflow: #{$option};
     }
 }
 
@@ -82,6 +115,16 @@
 $value in var.$pxBorderWeightList {
     [data-s-border="#{$name}"] {
         border: #{$value} solid;
+    }
+
+    @each $direction,
+    $dirValue in var.$spaceDirectionList {
+
+        @if $dirValue !=null {
+            [data-s-border-#{$direction}="#{$name}"] {
+                border: #{$value} solid;
+            }
+        }
     }
 
     @each $style in var.$borderStyleList {

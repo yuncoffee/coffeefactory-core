@@ -31,8 +31,13 @@ export default [
                 tsconfig: "./tsconfig.json",
                 exclude: ["src/stories", "**/*.stories.tsx", "**/*.test.tsx"],
             }),
-            // copy({ targets: [{ src: "src/models/type.d.ts", dest: "dist/" }] }),
-            postcss({ extract: true, minimize: true }),
+            // copy({
+            //     targets: [
+            //         { src: "src/data/type.ts", dest: "dist/esm/data/" },
+            //         { src: "src/models/type.d.ts", dest: "dist/esm/models/" },
+            //     ],
+            // }),
+            postcss({ extract: true }),
             terser(),
         ],
     },

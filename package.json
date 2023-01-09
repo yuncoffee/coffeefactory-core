@@ -3,7 +3,7 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/yuncoffee"
     },
-    "version": "0.0.3",
+    "version": "0.0.1",
     "description": "coffee's personal react base design system library",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -13,7 +13,8 @@
         "rollup": "rollup -c",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "stylelint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q && stylelint \"**/*.scss\" --fix"
+        "stylelint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q && stylelint \"**/*.scss\" --fix",
+        "parse-data": "tsc ./src/data/index.ts"
     },
     "repository": {
         "type": "git",

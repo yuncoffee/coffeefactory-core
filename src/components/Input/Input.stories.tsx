@@ -5,7 +5,7 @@ import { InputProps } from "@model/components"
 import { action } from "@storybook/addon-actions"
 
 export const Template = ({ ...props }: InputProps) => {
-    return <Input {...props} />
+    return <Input data-s-size={"xxl"} {...props} />
 }
 
 const ARG_TYPES = {

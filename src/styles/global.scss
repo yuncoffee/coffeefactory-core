@@ -41,5 +41,16 @@
         --border-weight-#{$name}: #{$value};
     }
 
+    @each $colorName,
+    $map in var.$globalColorMapList {
 
+        @each $colorType,
+        $value in $map {
+            --sy-#{$colorName}-#{$colorType}: #{$value};
+        }
+    }
+}
+
+h1 {
+    color: var(--sy-pri-base)
 }

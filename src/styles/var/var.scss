@@ -108,9 +108,21 @@ $pxBorderWeightList: (
     "light": 1px,
     "regular": 2px,
     "bold": 4px,
-    "extraBold": 6px
+    "extrabold": 6px
 );
 
 $borderStyleList: "solid", "dotted", "dashed", "double";
 
 $flexBoxList: "h-box", "v-box";
+
+$alignItemsList: "center", "start", "end", "flex-start", "flex-end";
+
+$justifyContentsList: "center", "start", "end", "flex-start", "flex-end", "left", "right";
+
+$overflowList: "visible", "hidden", "scroll", "auto";
+
+$displayList: "block", "flex", "none", "inline-flex";
+
+
+// color 관련 variables 설정
+@import "./color";
