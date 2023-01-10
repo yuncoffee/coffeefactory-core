@@ -1,44 +1,7 @@
-// key를 베이스로 컬러 명도 조정
-@function getAdjustColor($colorName, $lightness: null, $colorList: $secColorList) {
-    $baseColor: map-get($map: $colorList , $key: $colorName);
-
-    @if $lightness ==null {
-        @return adjust-color($baseColor);
-    }
-
-    @else {
-        @return adjust-color($baseColor, $lightness: $lightness);
-    }
-}
-
-// colorType별 명도 설정(getAdjustColor 호출)
-@function setColorType($key, $lightList: (null, 20%, 10%, -10%, -20%), $colorList: null) {
-
-    @if $colorList ==null {
-        $result: ("base": getAdjustColor($key, nth($lightList, 1)),
-            "lightness": getAdjustColor($key, nth($lightList, 2)),
-            "light": getAdjustColor($key, nth($lightList, 3)),
-            "dark": getAdjustColor($key, nth($lightList, 4)),
-            "darkness": getAdjustColor($key, nth($lightList, 5)));
-
-        @return $result;
-    }
-
-    @else {
-        $result: ("base": getAdjustColor($key, nth($lightList, 1), $colorList),
-            "lightness": getAdjustColor($key, nth($lightList, 2), $colorList),
-            "light": getAdjustColor($key, nth($lightList, 3), $colorList),
-            "dark": getAdjustColor($key, nth($lightList, 4), $colorList),
-            "darkness": getAdjustColor($key, nth($lightList, 5), $colorList));
-
-        @return $result;
-    }
-}
-
 $secColorList: (
-    "pri": #2C71D3,
-    "scalet": "",
-    "red": "",
+    // "pri": #2C71D3,
+    "scalet": #AD2423,
+    "red": #FF2929,
     "orange": #ED7912,
     "yellow": #EF8629,
     "lightgreen": #99C738,
@@ -59,7 +22,56 @@ $teriColorList: (
     "anchor": "",
 );
 
-$globalColorMapList: (
-    "pri": setColorType("pri"),
-    "sec": setColorType("pink")
-);
+// key를 베이스로 컬러 명도 조정
+@function setAdjustColor($colorName, $lightness: null, $colorList: $secColorList) {
+    $baseColor: map-get($map: $colorList , $key: $colorName);
+
+    @if $lightness ==null {
+        @return adjust-color($baseColor);
+    }
+
+    @else {
+        @return adjust-color($baseColor, $lightness: $lightness);
+    }
+}
+
+// colorType별 명도 설정(setAdjustColor 호출)
+@function setColorType($key, $lightList: (null, 20%, 10%, -10%, -20%), $colorList: null) {
+
+    @if $colorList ==null {
+        $result: ("base": setAdjustColor($key, nth($lightList, 1)),
+            "lightness": setAdjustColor($key, nth($lightList, 2)),
+            "light": setAdjustColor($key, nth($lightList, 3)),
+            "dark": setAdjustColor($key, nth($lightList, 4)),
+            "darkness": setAdjustColor($key, nth($lightList, 5)));
+
+        @return $result;
+    }
+
+    @else {
+        $result: ("base": setAdjustColor($key, nth($lightList, 1), $colorList),
+            "lightness": setAdjustColor($key, nth($lightList, 2), $colorList),
+            "light": setAdjustColor($key, nth($lightList, 3), $colorList),
+            "dark": setAdjustColor($key, nth($lightList, 4), $colorList),
+            "darkness": setAdjustColor($key, nth($lightList, 5), $colorList));
+
+        @return $result;
+    }
+}
+
+@function keyToColorMap($key) {
+    $result: ("#{$key}": setColorType(#{$key}));
+    @return $result;
+}
+
+@function listToColorMap($list) {
+    $result: ();
+
+    @each $key in $list {
+        $result: map-merge($result, keyToColorMap($key));
+    }
+
+    @return $result;
+}
+
+$globalColorMapList: listToColorMap(map-keys($secColorList));
