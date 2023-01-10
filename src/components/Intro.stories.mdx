@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/addon-docs"
-import { SIZE_LIST } from "../data/type"
+import { SIZE_LIST, COLOR_LIST, COLOR_TYPE_LIST } from "../data/type"
 
 <Meta title="Introduction" />
 
@@ -31,7 +31,51 @@ That makes it easy to develop hard-to-reach states. Save these UI states as **st
 <section className="sb-container">
     <div data-s-box="v-box" data-s-gap="8px">
         {SIZE_LIST.map((size, index) => {
-            return <div data-s-size={size} style={{ background: "tomato" }} />
+            return (
+                <div
+                    data-s-size={size}
+                    key={index}
+                    style={{ background: "tomato" }}
+                />
+            )
         })}
     </div>
+</section>
+
+<br />
+
+<h2>color</h2>
+<section className="sb-container">
+    <div data-s-box="v-box" data-s-gap="8px">
+        {COLOR_LIST.map((color, index) => {
+            return (
+                <div
+                    style={{ width: "200px", height: "32px" }}
+                    data-s-box="h-box"
+                    data-s-gap="8px"
+                    key={index}
+                >
+                    {COLOR_TYPE_LIST.map((type, _index) => {
+                        return (
+                            <>
+                            <div
+                                key={_index}
+                                style={{
+                                    width: "32px",
+                                    height: "32px",
+                                    backgroundColor: `rgba(var(--sy-${color}-${type}), 1)`
+                                }}
+                            />                            
+                            </>
+
+                        )
+                    })}
+                </div>
+            )
+        })}
+        {/* {SIZE_LIST.map((size, index) => {
+            return <div data-s-size={size} style={{ background: "tomato" }} />
+        })} */}
+    </div>
+
 </section>

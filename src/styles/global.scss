@@ -54,3 +54,7 @@
 h1 {
     color: var(--sy-pri-base)
 }
+
+[data-color="red"] {
+    background-color: rgba(var(--sy-red-darkness), 0.5);
+}

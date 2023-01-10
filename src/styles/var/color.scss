@@ -22,16 +22,22 @@ $teriColorList: (
     "anchor": "",
 );
 
+@function derive-rgb-values-from-hex($hex) {
+    @return red($hex),
+    green($hex),
+    blue($hex);
+}
+
 // key를 베이스로 컬러 명도 조정
 @function setAdjustColor($colorName, $lightness: null, $colorList: $secColorList) {
     $baseColor: map-get($map: $colorList , $key: $colorName);
 
     @if $lightness ==null {
-        @return adjust-color($baseColor);
+        @return derive-rgb-values-from-hex(adjust-color($baseColor));
     }
 
     @else {
-        @return adjust-color($baseColor, $lightness: $lightness);
+        @return derive-rgb-values-from-hex(adjust-color($baseColor, $lightness: $lightness));
     }
 }
 
