@@ -1,5 +1,10 @@
 import { Meta } from "@storybook/addon-docs"
-import { SIZE_LIST, COLOR_LIST, COLOR_TYPE_LIST } from "../data/type"
+import {
+    SIZE_LIST,
+    GLOBAL_COLOR_LIST,
+    COLOR_TYPE_LIST,
+    GRAY_COLOR_LIST,
+} from "../data/type"
 
 <Meta title="Introduction" />
 
@@ -46,8 +51,9 @@ That makes it easy to develop hard-to-reach states. Save these UI states as **st
 
 <h2>color</h2>
 <section className="sb-container">
-    <div data-s-box="v-box" data-s-gap="8px">
-        {COLOR_LIST.map((color, index) => {
+    <div data-s-box="h-box" data-s-gap="16px">
+        <div data-s-box="v-box" data-s-gap="8px">
+        {GLOBAL_COLOR_LIST.map((color, index) => {
             return (
                 <div
                     style={{ width: "200px", height: "32px" }}
@@ -57,25 +63,33 @@ That makes it easy to develop hard-to-reach states. Save these UI states as **st
                 >
                     {COLOR_TYPE_LIST.map((type, _index) => {
                         return (
-                            <>
                             <div
                                 key={_index}
                                 style={{
                                     width: "32px",
                                     height: "32px",
-                                    backgroundColor: `rgba(var(--sy-${color}-${type}), 1)`
+                                    backgroundColor: `rgba(var(--${color}-${type}), 1)`
                                 }}
                             />                            
-                            </>
-
                         )
                     })}
                 </div>
             )
         })}
-        {/* {SIZE_LIST.map((size, index) => {
-            return <div data-s-size={size} style={{ background: "tomato" }} />
-        })} */}
+    </div>
+    {
+        GRAY_COLOR_LIST.map((color, index)=>{
+            return (
+                <div 
+                key={index} 
+                style={{ 
+                    width: "32px",
+                    height: "32px",
+                    backgroundColor: `rgba(var(--${color}), 1)`
+                }} />
+            )
+        })
+    }
     </div>
 
 </section>

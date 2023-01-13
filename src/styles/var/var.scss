@@ -84,6 +84,16 @@ $sizeList: (
     "xxs": 24px
 );
 
+$radiusList: (
+    "circle": 50%,
+    "round": 100px,
+    "xxl": 16px,
+    "xl": 12px,
+    "lg": 8px,
+    "mid": 6px,
+    "sm": 4px,
+    "xs": 2px,
+);
 
 $pxSpaceList: (
     "min": 1,
@@ -103,7 +113,11 @@ $spaceDirectionList: (
 
 $spaceTypeList: "padding", "margin";
 
-
+$transitionList: (
+    "fast": 0.2s,
+    "normal": 0.3s,
+    "slow": 0.6s,
+);
 $pxBorderWeightList: (
     "light": 1px,
     "regular": 2px,
@@ -122,6 +136,9 @@ $justifyContentsList: "center", "start", "end", "flex-start", "flex-end", "left"
 $overflowList: "visible", "hidden", "scroll", "auto";
 
 $displayList: "block", "flex", "none", "inline-flex";
+
+
+$variantList: "box", "box-line", "box-ghost", "block", "block-line", "block-ghost", "round", "round-line", "round-ghost", "circle", "circle-line", "circle-ghost", "text";
 
 
 // color 관련 variables 설정

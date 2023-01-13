@@ -16,6 +16,9 @@ const Button = (
 ) => {
     return (
         <button
+            data-c-variant="round"
+            data-c-size="xl"
+            data-c-color="pri"
             className={s.button}
             {...props}
             ref={ref}

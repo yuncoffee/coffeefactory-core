@@ -56,6 +56,15 @@ html {
     box-sizing: inherit;
 }
 
+*:focus {
+    outline: 0
+}
+
+*:focus-visible {
+    border-style: dashed;
+
+}
+
 img,
 video {
     height: auto;

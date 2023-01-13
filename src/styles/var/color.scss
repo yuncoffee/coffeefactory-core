@@ -1,3 +1,22 @@
+$grayColorList: (
+    "black": #2b2b2b,
+    "gray900": #333333,
+    "gray800": #424242,
+    "gray700": #626262,
+    "gray600": #868686,
+    "gray500": #c4c4c4,
+    "gray400": #e0e0e0,
+    "gray300": #ebebeb,
+    "gray200": #f6f6f6,
+    "gray100": #f8f8f8,
+    "white": #ffffff
+);
+
+$priColorList: (
+    "pri": #00DF9C,
+    "sec": #0EC28C
+);
+
 $secColorList: (
     // "pri": #2C71D3,
     "scalet": #AD2423,
@@ -16,11 +35,14 @@ $secColorList: (
     "pink": #e43ba6,
 );
 
+
 $teriColorList: (
     "beige": "",
     "platinum": "",
     "anchor": "",
 );
+
+$globalColorList: map-merge($priColorList, $secColorList);
 
 @function derive-rgb-values-from-hex($hex) {
     @return red($hex),
@@ -29,7 +51,7 @@ $teriColorList: (
 }
 
 // key를 베이스로 컬러 명도 조정
-@function setAdjustColor($colorName, $lightness: null, $colorList: $secColorList) {
+@function setAdjustColor($colorName, $lightness: null, $colorList: $globalColorList) {
     $baseColor: map-get($map: $colorList , $key: $colorName);
 
     @if $lightness ==null {
@@ -42,7 +64,7 @@ $teriColorList: (
 }
 
 // colorType별 명도 설정(setAdjustColor 호출)
-@function setColorType($key, $lightList: (null, 20%, 10%, -10%, -20%), $colorList: null) {
+@function setColorType($key, $lightList: (null, 20%, 10%, -5%, -10%), $colorList: null) {
 
     @if $colorList ==null {
         $result: ("base": setAdjustColor($key, nth($lightList, 1)),
@@ -80,4 +102,17 @@ $teriColorList: (
     @return $result;
 }
 
-$globalColorMapList: listToColorMap(map-keys($secColorList));
+// grayColor 
+@function listToGrayMap($list) {
+    $result: ();
+
+    @each $key,
+    $value in $list {
+        $result: map-merge($result, (#{$key}: derive-rgb-values-from-hex($value)));
+    }
+
+    @return $result;
+}
+
+$globalColorMapList: listToColorMap(map-keys($globalColorList));
+$globalGrayMapList: listToGrayMap($grayColorList)

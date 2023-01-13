@@ -41,20 +41,27 @@
         --border-weight-#{$name}: #{$value};
     }
 
+    @each $name,
+    $value in var.$radiusList {
+        --radius-#{$name}: #{$value};
+    }
+
+    @each $name,
+    $value in var.$transitionList {
+        --transition-#{$name}: #{$value};
+    }
+
     @each $colorName,
     $map in var.$globalColorMapList {
 
         @each $colorType,
         $value in $map {
-            --sy-#{$colorName}-#{$colorType}: #{$value};
+            --#{$colorName}-#{$colorType}: #{$value};
         }
     }
-}
 
-h1 {
-    color: var(--sy-pri-base)
-}
-
-[data-color="red"] {
-    background-color: rgba(var(--sy-red-darkness), 0.5);
+    @each $colorName,
+    $value in var.$globalGrayMapList {
+        --#{$colorName}: #{$value}
+    }
 }
