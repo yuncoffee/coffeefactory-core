@@ -64,4 +64,6 @@
     $value in var.$globalGrayMapList {
         --#{$colorName}: #{$value}
     }
+
+
 }

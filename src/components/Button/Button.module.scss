@@ -11,6 +11,7 @@ $buttonBorderStyle__Focus: var(--border-weight-regular) dashed;
 $buttonPadding: 8px 16px;
 $buttonMinWidth : 120px;
 
+
 @mixin setButtonSize($size) {
     height: var(--#{$size});
     min-height: var(--#{$size});
@@ -23,6 +24,88 @@ $buttonMinWidth : 120px;
     @if $size =="xxs" {
         @include mixin.font300();
     }
+}
+
+@mixin setButtonGrayColor($variant) {
+    $key: "gray";
+    $base: 200;
+    $dark: 300;
+    $darkness: 400;
+    $contents: 700;
+
+    &[data-c-color="#{$key}"] {
+        &:focus-visible {
+            border : $buttonBorderStyle__Focus rgba(var(--#{$key}#{$darkness}), 1)
+        }
+
+        &:active {
+            border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+        }
+
+        &:hover {
+            background: rgba(var(--#{$key}#{$dark}), 1);
+        }
+    }
+
+    @include mixin.fillStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            background: rgba(var(--#{$key}#{$base}), 1);
+            color: rgba(var(--#{$key}#{$contents}), 1);
+            border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 0);
+        }
+    }
+
+    @include mixin.lineStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            background: rgba(var(--#{$key}#{$base}), 0);
+            color: rgba(var(--#{$key}#{$contents}), 1);
+            border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+
+            &:hover {
+                border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+            }
+
+            &:active {
+                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+            }
+        }
+    }
+
+    @include mixin.ghostStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            background: rgba(var(--#{$key}#{$base}), 0);
+            color: rgba(var(--#{$key}#{$contents}), 1);
+            border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 0);
+
+            &:hover {
+                border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+            }
+
+            &:active {
+                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+            }
+        }
+    }
+
+    @include mixin.textStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            background: rgba(var(--#{$key}#{$base}), 0);
+            color: rgba(var(--#{$key}#{$contents}), 1);
+            border: $buttonBorderStyle rgba(var(--#{$key}#{$base}), 0);
+
+            &:hover {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}900), 1);
+            }
+
+            &:active {
+                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 0);
+            }
+        }
+    }
+
 }
 
 @mixin setButtonColor($variant) {
@@ -44,7 +127,7 @@ $buttonMinWidth : 120px;
             }
         }
 
-        @if $variant =="block" or $variant =="box" or $variant =="round" or $variant =="circle" {
+        @include mixin.fillStyle($variant) {
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 1);
                 color: rgba(var(--white), 1);
@@ -52,7 +135,7 @@ $buttonMinWidth : 120px;
             }
         }
 
-        @if $variant =="block-line" or $variant =="box-line" or $variant =="round-line" or $variant =="circle-line" {
+        @include mixin.lineStyle($variant) {
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
@@ -62,11 +145,10 @@ $buttonMinWidth : 120px;
                     border: $buttonBorderStyle rgba(var(--#{$key}-dark), 1);
                     color: rgba(var(--white), 1);
                 }
-
             }
         }
 
-        @if $variant =="block-ghost" or $variant =="box-ghost" or $variant =="round-ghost" or $variant =="circle-ghost" {
+        @include mixin.ghostStyle($variant) {
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
@@ -79,7 +161,7 @@ $buttonMinWidth : 120px;
             }
         }
 
-        @if $variant =="text" {
+        @include mixin.textStyle($variant) {
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
@@ -99,27 +181,28 @@ $buttonMinWidth : 120px;
 }
 
 @mixin setButtonRadius($variant) {
-    @if $variant =="block" or $variant =="block-line" or $variant =="block-ghost" {
+
+    @include mixin.blockStyle($variant) {
         border-radius: $buttonBlockRadius;
     }
 
-    @if $variant =="box" or $variant =="box-line" or $variant =="box-ghost" {
+    @include mixin.boxStyle($variant) {
         border-radius: 0;
     }
 
-    @if $variant =="circle" or $variant =="circle-line" or $variant =="circle-ghost" {
+    @include mixin.circleStyle($variant) {
         border-radius: $buttonCircleRadius;
     }
 
-    @if $variant =="round" or $variant =="round-line" or $variant =="round-ghost" {
+    @include mixin.roundStyle($variant) {
         border-radius: $buttonRoundRadius;
     }
 }
 
 @mixin setButtonVariant($variant) {
+    @include setButtonGrayColor($variant);
     @include setButtonColor($variant);
     @include setButtonRadius($variant);
-
 }
 
 .button {
@@ -147,9 +230,9 @@ $buttonMinWidth : 120px;
         outline: 0;
     }
 
-    &:active {
+    &:active:not([data-c-variant="text"]) {
         &::before {
-            animation: buttonActiveStart 0.4s ease-in-out forwards;
+            animation: buttonActiveStart var(--transition-normal) ease-in-out forwards;
         }
     }
 
@@ -171,7 +254,7 @@ $buttonMinWidth : 120px;
 @keyframes buttonActiveStart {
     0% {
         transform: scale(0);
-        background: rgba(var(--white), 0.1);
+        background: rgba(var(--white), 0.15);
     }
 
     100% {

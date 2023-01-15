@@ -44,7 +44,7 @@ $teriColorList: (
 
 $globalColorList: map-merge($priColorList, $secColorList);
 
-@function derive-rgb-values-from-hex($hex) {
+@function hexToRgb($hex) {
     @return red($hex),
     green($hex),
     blue($hex);
@@ -55,11 +55,11 @@ $globalColorList: map-merge($priColorList, $secColorList);
     $baseColor: map-get($map: $colorList , $key: $colorName);
 
     @if $lightness ==null {
-        @return derive-rgb-values-from-hex(adjust-color($baseColor));
+        @return hexToRgb(adjust-color($baseColor));
     }
 
     @else {
-        @return derive-rgb-values-from-hex(adjust-color($baseColor, $lightness: $lightness));
+        @return hexToRgb(adjust-color($baseColor, $lightness: $lightness));
     }
 }
 
@@ -87,8 +87,9 @@ $globalColorList: map-merge($priColorList, $secColorList);
     }
 }
 
-@function keyToColorMap($key) {
-    $result: ("#{$key}": setColorType(#{$key}));
+@function keyToColorMap($key, $lightList: null, $colorList: null) {
+
+    $result: ("#{$key}": setColorType(#{$key}, $colorList: $colorList));
     @return $result;
 }
 
@@ -108,7 +109,7 @@ $globalColorList: map-merge($priColorList, $secColorList);
 
     @each $key,
     $value in $list {
-        $result: map-merge($result, (#{$key}: derive-rgb-values-from-hex($value)));
+        $result: map-merge($result, (#{$key}: hexToRgb($value)));
     }
 
     @return $result;

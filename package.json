@@ -68,7 +68,6 @@
         "rollup-plugin-peer-deps-external": "^2.2.4",
         "rollup-plugin-postcss": "^4.0.2",
         "sass": "^1.57.1",
-        "sass-lint": "^1.13.1",
         "sass-loader": "^13.2.0",
         "style-loader": "^3.3.1",
         "stylelint": "^14.16.1",

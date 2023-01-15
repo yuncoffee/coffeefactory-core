@@ -1,4 +1,13 @@
-export const SIZE_LIST = ["xxl", "xl", "lg", "mid", "sm", "xs", "xxs"] as const
+export const SIZE_LIST = [
+    "xxl",
+    "xl",
+    "lg",
+    "mid",
+    "sm",
+    "xs",
+    "xxs",
+    "xxxs",
+] as const
 
 export const GRAY_COLOR_LIST = [
     "black",

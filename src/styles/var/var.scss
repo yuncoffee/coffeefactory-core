@@ -81,7 +81,8 @@ $sizeList: (
     "mid": 36px,
     "sm": 32px,
     "xs": 28px,
-    "xxs": 24px
+    "xxs": 24px,
+    "xxxs": 20px
 );
 
 $radiusList: (
@@ -117,6 +118,7 @@ $transitionList: (
     "fast": 0.2s,
     "normal": 0.3s,
     "slow": 0.6s,
+    "slower": 1s,
 );
 $pxBorderWeightList: (
     "light": 1px,

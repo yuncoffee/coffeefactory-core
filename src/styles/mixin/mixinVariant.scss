@@ -1,0 +1,47 @@
+@mixin fillStyle($variant) {
+    @if $variant =="block" or $variant =="box" or $variant =="round" or $variant =="circle" {
+        @content;
+    }
+}
+
+@mixin lineStyle($variant) {
+    @if $variant =="block-line" or $variant =="box-line" or $variant =="round-line" or $variant =="circle-line" {
+        @content;
+    }
+}
+
+@mixin ghostStyle($variant) {
+    @if $variant =="block-ghost" or $variant =="box-ghost" or $variant =="round-ghost" or $variant =="circle-ghost" {
+        @content;
+    }
+}
+
+@mixin textStyle($variant) {
+    @if $variant =="text" {
+        @content;
+    }
+}
+
+@mixin blockStyle($variant) {
+    @if $variant =="block" or $variant =="block-line" or $variant =="block-ghost" {
+        @content;
+    }
+}
+
+@mixin boxStyle($variant) {
+    @if $variant =="box" or $variant =="box-line" or $variant =="box-ghost" {
+        @content;
+    }
+}
+
+@mixin circleStyle($variant) {
+    @if $variant =="circle" or $variant =="circle-line" or $variant =="circle-ghost" {
+        @content;
+    }
+}
+
+@mixin roundStyle($variant) {
+    @if $variant =="round" or $variant =="round-line" or $variant =="round-ghost" {
+        @content;
+    }
+}

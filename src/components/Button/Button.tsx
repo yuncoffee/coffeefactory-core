@@ -1,6 +1,7 @@
-import React, { ForwardedRef, forwardRef } from "react"
+import React, { ForwardedRef, forwardRef, useEffect, useState } from "react"
 import s from "./Button.module.scss"
 import { ButtonProps } from "@model/components/Button"
+import Spinner from "../Loader/Spinner"
 
 const Button = (
     {
@@ -8,16 +9,36 @@ const Button = (
         onClick = () => {
             console.log("helloworld!")
         },
+        size = "xxl",
         name,
         children,
+        isLoading = true,
         ...props
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
 ) => {
+    const [spinnerSize, setSpinnerSize] = useState(size)
+
+    useEffect(() => {
+        setSpinnerSize(getSpinnerSize(size))
+    }, [size])
+
+    const getSpinnerSize = (size: sSize) => {
+        if (size == "xxl") {
+            return "sm"
+        }
+
+        if (size == "xs" || size == "xxs") {
+            return "xxxs"
+        }
+
+        return "xxs"
+    }
+
     return (
         <button
-            data-c-variant="round"
-            data-c-size="xl"
+            data-c-variant="block"
+            data-c-size={size}
             data-c-color="pri"
             className={s.button}
             {...props}
@@ -25,8 +46,9 @@ const Button = (
             onClick={onClick}
             name={name ? name : buttonName}
         >
-            {!children && buttonName}
-            {children}
+            {isLoading && <Spinner size={spinnerSize} />}
+            {!isLoading && !children && buttonName}
+            {!isLoading && children}
         </button>
     )
 }
