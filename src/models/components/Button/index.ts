@@ -1,5 +1,9 @@
 import { ButtonHTMLAttributes } from "react"
-import { SIZE_LIST } from "../../../data/type"
+
+export type ButtonVariant = Omit<
+    sVariant,
+    "circle" | "circle-line" | "circle-ghost"
+>
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /**
@@ -15,5 +19,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      */
     dataType?: string
     isLoading?: boolean
-    size?: typeof SIZE_LIST[number]
+    variant: ButtonVariant
+    size?: sSize
 }

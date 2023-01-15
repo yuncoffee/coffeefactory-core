@@ -1,4 +1,4 @@
-import { SIZE_LIST } from "../data/type"
+import { SIZE_LIST, VARIANT_LIST } from "../data/type"
 
 declare global {
     type sFont =
@@ -14,7 +14,7 @@ declare global {
         | "100"
 
     type sSize = typeof SIZE_LIST[number]
-
+    type sVariant = typeof VARIANT_LIST[number]
     type sBorderStyle = "solid" | "dotted" | "dashed" | "double"
 
     declare namespace React {

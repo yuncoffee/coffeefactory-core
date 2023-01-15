@@ -9,6 +9,22 @@ export const SIZE_LIST = [
     "xxxs",
 ] as const
 
+export const VARIANT_LIST = [
+    "box",
+    "box-line",
+    "box-ghost",
+    "block",
+    "block-line",
+    "block-ghost",
+    "round",
+    "round-line",
+    "round-ghost",
+    "circle",
+    "circle-line",
+    "circle-ghost",
+    "text",
+] as const
+
 export const GRAY_COLOR_LIST = [
     "black",
     "gray900",
