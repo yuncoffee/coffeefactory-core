@@ -30,6 +30,12 @@
     }
 }
 
+@each $option in var.$flexwrapList {
+    [data-s-flexwrap="#{$option}"] {
+        flex-wrap: #{$option};
+    }
+}
+
 @each $option in var.$overflowList {
     [data-s-overflow="#{$option}"] {
         overflow: #{$option};
@@ -52,6 +58,14 @@
             [data-s-gap="#{$index}px"] {
                 gap: #{$index}px;
             }
+
+            [data-s-gap-x="#{$index}px"] {
+                gap: #{$index}px 0;
+            }
+
+            [data-s-gap-y="#{$index}px"] {
+                gap: 0 #{$index}px;
+            }
         }
     }
 
@@ -60,12 +74,28 @@
             [data-s-gap="#{$index}px"] {
                 gap: #{$index}px;
             }
+
+            [data-s-gap-x="#{$index}px"] {
+                gap: #{$index}px 0;
+            }
+
+            [data-s-gap-y="#{$index}px"] {
+                gap: 0 #{$index}px;
+            }
         }
     }
 
     @else {
         [data-s-gap="#{$index}px"] {
             gap: #{$index}px;
+        }
+
+        [data-s-gap-x="#{$index}px"] {
+            gap: #{$index}px 0;
+        }
+
+        [data-s-gap-y="#{$index}px"] {
+            gap: 0 #{$index}px;
         }
     }
 

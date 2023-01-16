@@ -1,1 +1,34 @@
 @use "../var/var";
+
+
+@each $colorName,
+$map in var.$globalColorMapList {
+
+    [data-s-color="#{$colorName}"] {
+        color: rgba(var(--#{$colorName}-base), 1);
+    }
+
+    [data-s-bgcolor="#{$colorName}"] {
+        background-color: rgba(var(--#{$colorName}-base), 1);
+    }
+
+    [data-s-bordercolor=#{$colorName}] {
+        border-color: rgba(var(--#{$colorName}-base), 1);
+    }
+
+}
+
+@each $colorName,
+$value in var.$globalGrayMapList {
+    [data-s-color="#{$colorName}"] {
+        color: rgba(var(--#{$colorName}), 1);
+    }
+
+    [data-s-bgcolor="#{$colorName}"] {
+        background-color: rgba(var(--#{$colorName}), 1);
+    }
+
+    [data-s-bordercolor="#{$colorName}"] {
+        border-color: rgba(var(--#{$colorName}), 1);
+    }
+}

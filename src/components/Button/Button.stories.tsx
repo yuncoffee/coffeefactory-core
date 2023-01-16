@@ -1,9 +1,10 @@
 import React from "react"
-import { ComponentMeta } from "@storybook/react"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
 import Button from "./Button"
-import Input from "../Input/Input"
 import { action } from "@storybook/addon-actions"
 import { ButtonProps } from "@model/components/Button"
+import { GLOBAL_COLOR_LIST } from "../../data/type"
+import { sColorName } from "@model/type"
 
 export const Template = ({ ...props }: ButtonProps) => {
     return <Button {...props} />
@@ -11,43 +12,70 @@ export const Template = ({ ...props }: ButtonProps) => {
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
+    buttonName: { defaultValue: "Button" },
+    variant: { defaultValue: "block" },
+    color: { defaultValue: "pri" },
+    size: { defaultValue: "lg" },
+}
+
+const PARAMETERS = {
+    controls: {
+        include: [
+            "buttonName",
+            "onClick",
+            "variant",
+            "color",
+            "size",
+            "className",
+            "isLoading",
+        ],
+    },
 }
 
 export default {
     title: "ReactComponentLibrary/Button",
     component: Template,
     argTypes: ARG_TYPES,
+    parameters: PARAMETERS,
 } as ComponentMeta<typeof Template>
 
-export const Hello = Template.bind({})
-export const ClickMe = Template.bind({})
-
-export const Test = () => {
+export const ColorScale: ComponentStory<typeof Button> = ({
+    ...props
+}: ButtonProps) => {
     return (
-        <>
-            <h1>test</h1>
-            <Button
-                buttonName="hello"
-                c-size="xl"
-                onClick={(e) => {
-                    console.log(e)
-                }}
-            >
-                <h1>test</h1>
-                <div>dd</div>hglloe
-            </Button>
-        </>
+        <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
+            {GLOBAL_COLOR_LIST.map((color) => {
+                let contentColor = color as sColorName
+
+                if (color == "gray" || color == "white") {
+                    contentColor = "gray700"
+                }
+
+                return (
+                    <div
+                        data-s-box="v-box"
+                        data-s-align="center"
+                        data-s-gap="8px"
+                    >
+                        <Button
+                            {...props}
+                            color={color}
+                            onClick={() => {
+                                console.log("hello world!")
+                            }}
+                        />
+                        <h4 data-s-color={contentColor}>{color}</h4>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
-export const Testtest = () => {
-    return (
-        <Input
-            data-s-font={"800"}
-            className="helloworld! i am"
-            // onChange={(event) => {
-            //     console.log(event.target.value)
-            // }}
-        />
-    )
+ColorScale.parameters = {
+    ...PARAMETERS,
+    controls: {
+        ...PARAMETERS.controls,
+        exclude: ["color"],
+    },
 }

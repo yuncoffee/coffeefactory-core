@@ -1,24 +1,25 @@
+import { baseStyleAttributes, sButtonVariant, sColor } from "@model/type"
 import { ButtonHTMLAttributes } from "react"
 
-export type ButtonVariant = Omit<
-    sVariant,
-    "circle" | "circle-line" | "circle-ghost"
->
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+    extends ButtonHTMLAttributes<HTMLButtonElement>,
+        baseStyleAttributes {
     /**
-     * buttonName은 이름이다.!
+     * display Name
      */
     buttonName: string
     /**
-     * onClick은 중요하다..!
+     *
+     * Button needs onClick Event
      */
     onClick: React.MouseEventHandler<HTMLButtonElement>
     /**
-     * dataType은 들어올 수도 있따..!!!!
+     * state of Loading
      */
-    dataType?: string
     isLoading?: boolean
-    variant: ButtonVariant
-    size?: sSize
+    variant?: sButtonVariant
+    /**
+     * component color
+     */
+    color?: sColor
 }

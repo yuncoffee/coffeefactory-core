@@ -6,8 +6,9 @@ import React, {
     useState,
 } from "react"
 import s from "./Button.module.scss"
-import { ButtonProps, ButtonVariant } from "@model/components/Button"
 import Spinner from "../Loader/Spinner"
+import { ButtonProps } from "@model/components/Button"
+import { sButtonVariant, sSize } from "@model/type"
 
 const Button = (
     {
@@ -15,13 +16,12 @@ const Button = (
         onClick = () => {
             console.log("helloworld!")
         },
-        variant = "block-line",
-        color = "red",
+        variant = "block",
+        color = "pri",
         size = "xxl",
-        name,
+        className,
         children,
         isLoading = false,
-
         ...props
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
@@ -47,7 +47,7 @@ const Button = (
         return "xxs"
     }
 
-    const getSpinnerColor = (variant: ButtonVariant) => {
+    const getSpinnerColor = (variant: sButtonVariant) => {
         let regExp = /-ghost$/
         if (regExp.test(variant as string)) {
             return color
@@ -75,13 +75,13 @@ const Button = (
             data-c-variant={variant}
             data-c-size={size}
             data-c-color={color}
-            className={s.button}
+            className={`${s.button} ${className}`}
             ref={ref}
             onClick={onClick}
-            name={name ? name : buttonName}
-            {...props}
+            name={props.name ? props.name : buttonName}
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave}
+            {...props}
         >
             {isLoading && <Spinner size={spinnerSize} color={spinnerColor} />}
             {!isLoading && !children && buttonName}

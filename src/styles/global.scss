@@ -3,6 +3,7 @@
 @import "./module/font";
 @import "./module/size";
 @import "./module/space";
+@import "./module//color";
 
 @keyframes fontAni-wght {
     0% {
@@ -64,6 +65,4 @@
     $value in var.$globalGrayMapList {
         --#{$colorName}: #{$value}
     }
-
-
 }
