@@ -1,4 +1,9 @@
-import { baseStyleAttributes, sButtonVariant, sColor } from "@model/type"
+import {
+    baseStyleAttributes,
+    sBaseSize,
+    sButtonVariant,
+    sColor,
+} from "@model/type"
 import { ButtonHTMLAttributes } from "react"
 
 export interface ButtonProps
@@ -17,9 +22,19 @@ export interface ButtonProps
      * state of Loading
      */
     isLoading?: boolean
+    /**
+     * state of has Icon - using remixicon
+     *
+     * @link https://remixicon.com/
+     */
+    iconName?: string
     variant?: sButtonVariant
     /**
      * component color
      */
     color?: sColor
+    /**
+     * component size
+     */
+    size?: sBaseSize
 }

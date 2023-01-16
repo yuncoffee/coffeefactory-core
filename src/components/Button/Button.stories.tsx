@@ -28,6 +28,7 @@ const PARAMETERS = {
             "size",
             "className",
             "isLoading",
+            "iconName",
         ],
     },
 }

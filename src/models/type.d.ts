@@ -1,4 +1,5 @@
 import {
+    BASE_SIZE_LIST,
     BLOCK_VARIANT_LIST,
     BOX_VARIANT_LIST,
     CIRCLE_VARIANT_LIST,
@@ -27,6 +28,7 @@ import {
 } from "../data/utilsType"
 
 export type sFont = typeof FONT_LIST[number]
+export type sBaseSize = typeof BASE_SIZE_LIST[number]
 export type sSize = typeof SIZE_LIST[number]
 export type sBoxVariant = typeof BOX_VARIANT_LIST[number]
 export type sBlockVariant = typeof BLOCK_VARIANT_LIST[number]

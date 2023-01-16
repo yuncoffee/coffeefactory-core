@@ -11,7 +11,7 @@ export const FONT_LIST = [
     "100",
 ] as const
 
-export const SIZE_LIST = [
+export const BASE_SIZE_LIST = [
     "xxl",
     "xl",
     "lg",
@@ -19,8 +19,9 @@ export const SIZE_LIST = [
     "sm",
     "xs",
     "xxs",
-    "xxxs",
 ] as const
+
+export const SIZE_LIST = [...BASE_SIZE_LIST, "xxxs"] as const
 
 export const BOX_VARIANT_LIST = ["box", "box-line", "box-ghost"] as const
 
@@ -99,8 +100,3 @@ export const COLOR_TYPE_LIST = [
     "dark",
     "darkness",
 ]
-
-export const SPACE_LIST = Array.from(
-    { length: 32 },
-    (i: number) => `${i * 2}px`
-)
