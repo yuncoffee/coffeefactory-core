@@ -36,10 +36,16 @@ export type sRoundVariant = typeof ROUND_VARIANT_LIST[number]
 export type sCircleVariant = typeof CIRCLE_VARIANT_LIST[number]
 export type sEtcVariant = typeof ETC_VARIANT_LIST[number]
 
-export type sButtonVariant =
+export type sVariantExcpetCircle =
     | sBoxVariant
     | sBlockVariant
     | sRoundVariant
+    | sEtcVariant
+
+export type sVariantExceptRound =
+    | sBoxVariant
+    | sBlockVariant
+    | sCircleVariant
     | sEtcVariant
 
 export type sVariant =

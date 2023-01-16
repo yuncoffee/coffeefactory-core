@@ -1,18 +1,15 @@
 import {
     baseStyleAttributes,
     sBaseSize,
-    sButtonVariant,
+    sVariantExcpetCircle,
     sColor,
+    sVariantExceptRound,
 } from "@model/type"
 import { ButtonHTMLAttributes } from "react"
 
-export interface ButtonProps
+interface ButtonBaseProps
     extends ButtonHTMLAttributes<HTMLButtonElement>,
         baseStyleAttributes {
-    /**
-     * display Name
-     */
-    buttonName: string
     /**
      *
      * Button needs onClick Event
@@ -28,7 +25,6 @@ export interface ButtonProps
      * @link https://remixicon.com/
      */
     iconName?: string
-    variant?: sButtonVariant
     /**
      * component color
      */
@@ -37,4 +33,17 @@ export interface ButtonProps
      * component size
      */
     size?: sBaseSize
+}
+
+export interface ButtonProps extends ButtonBaseProps {
+    /**
+     * display Name
+     */
+    buttonName: string
+    variant?: sVariantExcpetCircle
+}
+
+export interface IconButtonProps extends ButtonBaseProps {
+    iconName: string
+    variant?: sVariantExceptRound
 }

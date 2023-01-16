@@ -12,10 +12,16 @@ $buttonPadding: 8px 16px;
 $buttonMinWidth : 120px;
 
 
-@mixin setButtonSize($size) {
+@mixin setButtonSize($size, $type: "button") {
     height: var(--#{$size});
     min-height: var(--#{$size});
     max-height: var(--#{$size});
+
+    @if $type =="iconButton" {
+        width: var(--#{$size});
+        min-width: var(--#{$size});
+        max-width: var(--#{$size});
+    }
 
     @if $size =="xxl" {
         @include mixin.font500();
@@ -213,14 +219,13 @@ $buttonMinWidth : 120px;
     @include setButtonRadius($variant);
 }
 
-.button {
+.button,
+.iconButton {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: $buttonPadding;
-    min-width: $buttonMinWidth;
     transition: $buttonTransition;
 
     @include mixin.font400();
@@ -244,19 +249,33 @@ $buttonMinWidth : 120px;
         }
     }
 
+    @each $variant in var.$variantList {
+        &[data-c-variant="#{$variant}"] {
+            @include setButtonVariant($variant);
+        }
+    }
+}
+
+.button {
+    padding: $buttonPadding;
+    min-width: $buttonMinWidth;
+
     @each $size,
     $value in var.$sizeList {
         &[data-c-size="#{$size}"] {
             @include setButtonSize($size);
         }
     }
+}
 
-    @each $variant in var.$variantList {
-        &[data-c-variant="#{$variant}"] {
-            @include setButtonVariant($variant);
+.iconButton {
+
+    @each $size,
+    $value in var.$sizeList {
+        &[data-c-size="#{$size}"] {
+            @include setButtonSize($size, "iconButton");
         }
     }
-
 }
 
 @keyframes buttonActiveStart {
