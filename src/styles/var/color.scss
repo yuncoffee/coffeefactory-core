@@ -64,7 +64,7 @@ $globalColorList: map-merge($priColorList, $secColorList);
 }
 
 // colorType별 명도 설정(setAdjustColor 호출)
-@function setColorType($key, $lightList: (null, 20%, 10%, -5%, -10%), $colorList: null) {
+@function setColorType($key, $lightList: (null, 20%, 10%, -5%, -15%), $colorList: null) {
 
     @if $colorList ==null {
         $result: ("base": setAdjustColor($key, nth($lightList, 1)),

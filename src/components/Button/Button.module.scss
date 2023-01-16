@@ -118,12 +118,12 @@ $buttonMinWidth : 120px;
                 border : $buttonBorderStyle__Focus rgba(var(--#{$key}-darkness), 1)
             }
 
-            &:active {
-                border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
-            }
-
             &:hover {
                 background: rgba(var(--#{$key}-dark), 1);
+            }
+
+            &:active {
+                border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
             }
         }
 
@@ -145,6 +145,10 @@ $buttonMinWidth : 120px;
                     border: $buttonBorderStyle rgba(var(--#{$key}-dark), 1);
                     color: rgba(var(--white), 1);
                 }
+
+                &:active {
+                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
+                }
             }
         }
 
@@ -157,6 +161,10 @@ $buttonMinWidth : 120px;
                 &:hover {
                     border: $buttonBorderStyle rgba(var(--#{$key}-dark), 1);
                     color: rgba(var(--white), 1);
+                }
+
+                &:active {
+                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
                 }
             }
         }
