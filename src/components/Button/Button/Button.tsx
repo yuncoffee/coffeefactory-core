@@ -1,9 +1,8 @@
-import React, { ForwardedRef, forwardRef, useEffect, useState } from "react"
-import s from "./Button.module.scss"
-import Spinner from "../Loader/Spinner"
+import React, { ForwardedRef, forwardRef } from "react"
 import { ButtonProps } from "@model/components/Button"
-import { sBaseSize, sVariantExcpetCircle, sSize } from "@model/type"
-import useButton from "./useButton"
+import useButton from "../useButton"
+import Spinner from "../../Loader/Spinner"
+import s from "../Button.module.scss"
 
 const Button = (
     {

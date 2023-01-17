@@ -1,19 +1,18 @@
 import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
-import Button from "./Button"
 import { action } from "@storybook/addon-actions"
-import { ButtonProps, IconButtonProps } from "@model/components/Button"
-import { GLOBAL_COLOR_LIST } from "../../data/type"
+import { GLOBAL_COLOR_LIST } from "../../../data/type"
+import { ButtonProps } from "@model/components/Button"
 import { sColorName } from "@model/type"
-import IconButton from "./IconButton"
+import Button from "./Button"
 
-export const Template = ({ ...props }: IconButtonProps) => {
-    return <IconButton {...props} />
+export const Template = ({ ...props }: ButtonProps) => {
+    return <Button {...props} />
 }
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
-    iconName: { defaultValue: "ri-close-line" },
+    buttonName: { defaultValue: "Button" },
     variant: { defaultValue: "block" },
     color: { defaultValue: "pri" },
     size: { defaultValue: "lg" },
@@ -22,27 +21,28 @@ const ARG_TYPES = {
 const PARAMETERS = {
     controls: {
         include: [
-            "iconName",
+            "buttonName",
             "onClick",
             "variant",
             "color",
             "size",
             "className",
             "isLoading",
+            "iconName",
         ],
     },
 }
 
 export default {
-    title: "ReactComponentLibrary/IconButton",
+    title: "ReactComponentLibrary/Button",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,
 } as ComponentMeta<typeof Template>
 
-export const ColorScale: ComponentStory<typeof IconButton> = ({
+export const ColorScale: ComponentStory<typeof Button> = ({
     ...props
-}: IconButtonProps) => {
+}: ButtonProps) => {
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
             {GLOBAL_COLOR_LIST.map((color) => {
@@ -58,7 +58,7 @@ export const ColorScale: ComponentStory<typeof IconButton> = ({
                         data-s-align="center"
                         data-s-gap="8px"
                     >
-                        <IconButton
+                        <Button
                             {...props}
                             color={color}
                             onClick={() => {

@@ -1,12 +1,13 @@
 @use "../var/var";
 
-
+// display
 @each $option in var.$displayList {
     [data-s-display="#{$option}"] {
         display: #{$option};
     }
 }
 
+// flexbox
 @each $option in var.$flexBoxList {
 
     [data-s-box="#{$option}"] {
@@ -137,10 +138,10 @@
 
             }
         }
-
     }
 }
 
+// border
 @each $name,
 $value in var.$pxBorderWeightList {
     [data-s-border="#{$name}"] {
@@ -190,5 +191,11 @@ $value in var.$pxBorderWeightList {
             }
         }
     }
+}
 
+@each $name,
+$value in var.$radiusList {
+    [data-s-raidus="#{$name}"] {
+        border-radius: #{$value};
+    }
 }

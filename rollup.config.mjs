@@ -40,6 +40,7 @@ export default [
             postcss({ extract: true }),
             terser(),
         ],
+        external: ["react", "react-dom"],
     },
     {
         input: "dist/esm/index.d.ts",
