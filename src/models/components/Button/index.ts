@@ -47,3 +47,5 @@ export interface IconButtonProps extends ButtonBaseProps {
     iconName: string
     variant?: sVariantExceptRound
 }
+
+export interface ToggleProps extends ButtonBaseProps {}
