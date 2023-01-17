@@ -25,6 +25,9 @@
     "bugs": {
         "url": "https://github.com/yuncoffee/coffeefactory-core/issues"
     },
+    "bin": {
+        "make-comp": "./command.ts"
+    },
     "homepage": "https://github.com/yuncoffee/coffeefactory-core#readme",
     "devDependencies": {
         "@babel/core": "^7.20.7",
@@ -55,6 +58,7 @@
         "@types/rollup-plugin-peer-deps-external": "^2.2.1",
         "babel-jest": "^29.3.1",
         "babel-loader": "^8.3.0",
+        "commander": "^10.0.0",
         "css-loader": "^6.7.3",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^29.3.1",
