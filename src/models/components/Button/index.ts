@@ -48,4 +48,7 @@ export interface IconButtonProps extends ButtonBaseProps {
     variant?: sVariantExceptRound
 }
 
-export interface ToggleProps extends ButtonBaseProps {}
+export interface ToggleProps extends ButtonBaseProps {
+    isActive: boolean
+    isMono: boolean
+}
