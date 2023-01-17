@@ -1,10 +1,16 @@
-import React, { ForwardedRef, forwardRef, useState } from "react"
+import React, {
+    BaseSyntheticEvent,
+    ForwardedRef,
+    MouseEvent,
+    forwardRef,
+    useState,
+} from "react"
 import { ToggleProps } from "@model/components/Button"
 import s from "./Toggle.module.scss"
 
 function Toggle(
     {
-        size,
+        size = "lg",
         onClick,
         color = "pri",
         className,
@@ -17,9 +23,9 @@ function Toggle(
 ) {
     const [_isActive, _setIsActive] = useState(isActive)
 
-    const handleToggle = () => {
+    const handleToggle = (event: BaseSyntheticEvent) => {
         _setIsActive(!_isActive)
-        onClick
+        onClick && onClick(event as MouseEvent<HTMLButtonElement>)
     }
 
     return (

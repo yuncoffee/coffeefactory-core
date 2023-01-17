@@ -50,7 +50,8 @@ export const ColorScale: ComponentStory<typeof Template> = ({
                         <Toggle
                             {...props}
                             color={color}
-                            onClick={() => {
+                            onClick={(event) => {
+                                console.log(event.currentTarget)
                                 console.log("hello world!")
                             }}
                         />

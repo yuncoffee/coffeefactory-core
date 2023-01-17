@@ -5,7 +5,8 @@
 $transition : var(--transition-slow);
 $borderStyle: var(--border-weight-regular) solid;
 $borderStyle__focus: var(--border-weight-regular) dashed;
-$shadow: 0 0 6px 2px rgba(var(--black), 0.2);
+$shadow: 0 0 3px 2px rgba(var(--black), 0.1);
+$shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
 
 
 @mixin setToggleSize($size) {
@@ -159,7 +160,7 @@ $shadow: 0 0 6px 2px rgba(var(--black), 0.2);
         transition-property: transform;
         border-radius: 50%;
         background: rgba(var(--white), 1);
-        box-shadow: $shadow;
+        box-shadow: $shadow, $shadow__inset1;
     }
 
     @each $size,
