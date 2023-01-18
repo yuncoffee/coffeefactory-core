@@ -51,55 +51,56 @@ $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
 
 @mixin setButtonColor {
 
-    @each $key,
-    $value in var.$globalColorList {
+    $base: 200;
+    $dark: 300;
+    $darkness: 400;
+    $darkest: 500;
+    $contents: 700;
 
-        $base: 200;
-        $dark: 300;
-        $darkness: 400;
-        $contents: 700;
+    &[data-c-color="gray"] {
+        background: rgba(var(--gray#{$base}), 1);
+        color: rgba(var(--gray#{$contents}), 1);
+        border: $borderStyle rgba(var(--gray#{$darkness}), 0);
 
-        &[data-c-color="gray"] {
-            background: rgba(var(--gray#{$base}), 1);
-            color: rgba(var(--gray#{$contents}), 1);
-            border: $borderStyle rgba(var(--gray#{$darkness}), 0);
+        &:focus-visible {
+            border : $borderStyle__focus rgba(var(--gray#{$darkness}), 1)
+        }
 
-            &:focus-visible {
-                border : $borderStyle__focus rgba(var(--gray#{$darkness}), 1)
+        &:active {
+            border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+        }
+
+        &:hover {
+            background: rgba(var(--gray#{$dark}), 1);
+        }
+
+        &:disabled:not([data-c-mono="false"]) {
+            background: rgba(var(--gray#{$darkness}), 1);
+
+            .toggle__core {
+                background: rgba(var(--gray#{$darkest}), 1);
             }
+        }
 
-            &:active {
-                border: $borderStyle rgba(var(--gray#{$darkness}), 1);
-            }
+        &[data-c-active="false"] {
+            background: rgba(var(--gray#{$darkness}), 1);
 
             &:hover {
-                background: rgba(var(--gray#{$dark}), 1);
+                background: rgba(var(--gray#{$base}), 1);
             }
 
             &:disabled:not([data-c-mono="false"]) {
-                background: rgba(var(--gray400), 1);
+                background: rgba(var(--gray#{$darkness}), 1);
 
                 .toggle__core {
-                    background: rgba(var(--gray500), 1);
-                }
-            }
-
-            &[data-c-active="false"] {
-                background: rgba(var(--gray400), 1);
-
-                &:hover {
-                    background: rgba(var(--gray#{$base}), 1);
-                }
-
-                &:disabled:not([data-c-mono="false"]) {
-                    background: rgba(var(--gray400), 1);
-
-                    .toggle__core {
-                        background: rgba(var(--gray500), 1);
-                    }
+                    background: rgba(var(--gray#{$darkest}), 1);
                 }
             }
         }
+    }
+
+    @each $key,
+    $value in var.$globalColorList {
 
         &[data-c-color="#{$key}"] {
             background: rgba(var(--#{$key}-base), 1);
@@ -119,25 +120,25 @@ $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
             }
 
             &:disabled:not([data-c-mono="false"]) {
-                background: rgba(var(--gray400), 1);
+                background: rgba(var(--gray#{$darkness}), 1);
 
                 .toggle__core {
-                    background: rgba(var(--gray500), 1);
+                    background: rgba(var(--gray#{$darkest}), 1);
                 }
             }
 
             &[data-c-active="false"] {
-                background: rgba(var(--gray400), 1);
+                background: rgba(var(--gray#{$darkness}), 1);
 
                 &:hover {
-                    background: rgba(var(--#{$key}-lightness), 1);
+                    background: rgba(var(--#{$key}-light), 0.5);
                 }
 
                 &:disabled:not([data-c-mono="false"]) {
-                    background: rgba(var(--gray400), 1);
+                    background: rgba(var(--gray#{$darkness}), 1);
 
                     .toggle__core {
-                        background: rgba(var(--gray500), 1);
+                        background: rgba(var(--gray#{$darkest}), 1);
                     }
                 }
             }
@@ -156,10 +157,10 @@ $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
         top: 50%;
         left: 50%;
         transform: translate3d(-50%, -50%, 0);
-        transition: $transition;
         transition-property: transform;
         border-radius: 50%;
         background: rgba(var(--white), 1);
+        transition: $transition;
         box-shadow: $shadow, $shadow__inset1;
     }
 

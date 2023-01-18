@@ -1,0 +1,295 @@
+@use "./mixin";
+
+$transition : var(--transition-normal);
+$borderStyle: var(--border-weight-regular) solid;
+$borderStyle__focus: var(--border-weight-regular) dashed;
+$coreGap: 8px;
+
+
+
+@mixin setCheckerHasLabel {
+    &[data-c-haslabel="true"] {
+        padding: 0 12px 0 8px;
+    }
+
+    &[data-c-haslabel="false"] {
+        padding: 0 8px;
+    }
+}
+
+@mixin setCheckerSize($size, $name) {
+    $height : var(--#{$size});
+    $labelHeight : calc($height / 2);
+
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+    min-width: $height;
+
+    .#{$name}__label {
+        height: $labelHeight;
+        min-height: $labelHeight;
+        max-height: $labelHeight;
+        min-width: $labelHeight;
+
+        &::before {
+            max-width: $labelHeight;
+        }
+
+        &::after {
+            max-width: calc($labelHeight - $coreGap);
+        }
+    }
+
+    .#{$name}__value {
+        padding-left: calc($labelHeight + $coreGap);
+        @include mixin.font500;
+    }
+}
+
+@mixin setCheckerColor($name) {
+
+    $base: 200;
+    $dark: 300;
+    $darkness: 400;
+    $darkest: 500;
+    $contents: 700;
+
+    &[data-c-color="gray"] {
+        border: $borderStyle rgba(var(--gray#{$darkness}), 0);
+
+        // tab을 통해 focus 되었을 경우
+        &:focus-visible {
+            border : $borderStyle__focus rgba(var(--gray#{$darkness}), 1)
+        }
+
+        // hover 중일 때
+        &:hover {
+            background: rgba(var(--gray#{$base}), 1);
+        }
+
+        // 클릭하고 있을 때
+        &:active {
+            border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+        }
+
+        .#{$name}__label {
+            &::before {
+                background: rgba(var(--gray#{$base}), 0);
+                border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+            }
+
+            &::after {
+                background: rgba(var(--gray#{$darkness}), 1);
+            }
+        }
+
+        .#{$name}__value {
+            color: rgba(var(--gray#{$contents}), 1);
+        }
+
+        // checked 일 때 애니메이션 설정
+        &[aria-checked="false"] {
+            .#{$name}__label {
+                &::after {
+                    background: rgba(var(--gray#{$darkness}), 1);
+                    animation: notSelected var(--transition-fast) ease-out forwards;
+                }
+            }
+        }
+
+        &[data-c-init="true"] {
+            .#{$name}__label {
+                &::after {
+                    background: rgba(var(--gray#{$base}), 0);
+                    animation: notSelected var(--transition-fast) ease-out forwards;
+
+                }
+            }
+        }
+
+        &[aria-checked="true"] {
+            .#{$name}__label {
+                &::after {
+                    background: rgba(var(--gray#{$darkness}), 1);
+                    animation: selected var(--transition-fast) ease-out forwards;
+                }
+            }
+        }
+
+        // disbled일 때
+        &[aria-disabled="true"]:not([data-c-mono="false"]) {
+
+            .#{$name}__label {
+                &::before {
+                    background: rgba(var(--gray#{$dark}), 1);
+                    border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+                }
+
+                &::after {
+                    background: rgba(var(--gray#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @each $key,
+    $value in mixin.$globalColorList {
+
+        &[data-c-color="#{$key}"] {
+            border: $borderStyle rgba(var(--#{$key}-darkness), 0);
+
+            // tab을 통해 focus 되었을 경우
+            &:focus-visible {
+                border : $borderStyle__focus rgba(var(--#{$key}-darkness), 1)
+            }
+
+            // hover 중일 때
+            &:hover {
+                background: rgba(var(--gray#{$base}), 1);
+            }
+
+            // 클릭하고 있을 때
+            &:active {
+                border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+            }
+
+            .#{$name}__label {
+                &::before {
+                    background: rgba(var(--#{$key}-base), 0);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 1);
+                }
+
+                &::after {
+                    background: rgba(var(--#{$key}-base), 0);
+                }
+            }
+
+            .#{$name}__value {
+                color: rgba(var(--gray#{$contents}), 1);
+            }
+
+            // checked 일 때 애니메이션 설정
+            &[aria-checked="false"] {
+                .#{$name}__label {
+                    &::after {
+                        background: rgba(var(--#{$key}-base), 1);
+                        animation: notSelected var(--transition-fast) ease-out forwards;
+                    }
+                }
+            }
+
+            &[data-c-init="true"] {
+                .#{$name}__label {
+                    &::after {
+                        background: rgba(var(--#{$key}-base), 0);
+                        animation: notSelected var(--transition-fast) ease-out forwards;
+
+                    }
+                }
+            }
+
+            &[aria-checked="true"] {
+                .#{$name}__label {
+                    &::after {
+                        background: rgba(var(--#{$key}-base), 1);
+                        animation: selected var(--transition-fast) ease-out forwards;
+                    }
+                }
+            }
+
+            // disbled일 때
+            &[aria-disabled="true"]:not([data-c-mono="false"]) {
+
+                .#{$name}__label {
+                    &::before {
+                        background: rgba(var(--gray#{$dark}), 1);
+                        border: $borderStyle rgba(var(--gray#{$darkness}), 1);
+                    }
+
+                    &::after {
+                        background: rgba(var(--gray#{$darkest}), 1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin setCheckerStyle($name) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $transition;
+    border-radius: var(--radius-round);
+
+    &__input {
+        display: none;
+    }
+
+    &__label {
+        display: flex;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: $coreGap / 2;
+            top: $coreGap / 2;
+            width: calc(100% - $coreGap);
+            height: calc(100% - $coreGap);
+        }
+    }
+
+    // label on/off 설정
+    @include setCheckerHasLabel;
+
+    // 사이즈 설정
+    @each $size,
+    $value in mixin.$sizeList {
+        &[data-c-size="#{$size}"] {
+            @include setCheckerSize($size, $name);
+        }
+    }
+
+    // 컬러 설정
+    @include setCheckerColor($name);
+}
+
+@keyframes notSelected {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes selected {
+    0% {
+        transform: scale(1.2);
+    }
+
+    40% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

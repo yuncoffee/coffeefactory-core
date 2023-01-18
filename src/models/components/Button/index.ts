@@ -8,7 +8,7 @@ import {
 import { ButtonHTMLAttributes } from "react"
 
 interface ButtonBaseProps
-    extends ButtonHTMLAttributes<HTMLButtonElement>,
+    extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size" | "color">,
         baseStyleAttributes {
     /**
      *
@@ -25,10 +25,6 @@ interface ButtonBaseProps
      * @link https://remixicon.com/
      */
     iconName?: string
-    /**
-     * component color
-     */
-    color?: sColor
     /**
      * component size
      */

@@ -1,73 +1,115 @@
-// import React from "react"
-// import { ComponentMeta, ComponentStory } from "@storybook/react"
-// import { action } from "@storybook/addon-actions"
-// import { I } from "/model"
-// import { GLOBAL_COLOR_LIST } from "../../../data/type"
-// import { sColorName } from "@model/type"
-// import Radio from "./Radio"
+import React, { useState } from "react"
+import { ComponentMeta, ComponentStory } from "@storybook/react"
+import { RadioProps } from "@model/components"
+import { GLOBAL_COLOR_LIST } from "../../../data/type"
+import { sColorName } from "@model/type"
+import Radio from "./Radio"
 
-// export const Template = ({ ...props }: I) => {
-//     return <Radio {...props} />
-// }
+export const Template = ({ ...props }: RadioProps) => {
+    const _value: string[] = props.value! as string[]
+    const [selected, setSelected] = useState(_value[0])
 
-// const ARG_TYPES = {
-//     onClick: { control: false, defaultValue: action("click!") },
-//     // Add ArgTypes...
-// }
+    return (
+        <div data-s-box="h-box" data-s-gap="8px">
+            {[...Array(3)].map((value, index) => {
+                return (
+                    <Radio
+                        {...props}
+                        key={index}
+                        onChange={() => {
+                            setSelected(_value[index])
+                        }}
+                        checked={selected == _value![index]}
+                        value={_value![index]}
+                    />
+                )
+            })}
+        </div>
+    )
+}
 
-// const PARAMETERS = {
-//     controls: {
-//         include: [
-//             "onClick",
-//             // Add Props Args(Props)..
-//         ],
-//     },
-// }
+const ARG_TYPES = {
+    size: { defaultValue: "lg" },
+    color: { defaultValue: "pri" },
+    defaultChecked: { defaultValue: false },
+    hasLabel: { defaultValue: true },
+    disabled: { control: "boolean", defaultValue: false },
+    name: { defaultValue: "radio-group" },
+    value: { control: "array", defaultValue: ["hello", "world", "storybook"] },
+    // Add ArgTypes...
+}
 
-// export default {
-//     title: "ReactComponentLibrary/Radio",
-//     component: Template,
-//     argTypes: ARG_TYPES,
-//     parameters: PARAMETERS,
-// } as ComponentMeta<typeof Template>
+const PARAMETERS = {
+    controls: {
+        include: [
+            "name",
+            "value",
+            "checked",
+            "size",
+            "color",
+            "isMono",
+            "disabled",
+            "hasLabel",
+        ],
+    },
+}
 
-// export const ColorScale: ComponentStory<typeof Radio> = ({
-//     ...props
-// }: I) => {
-//     return (
-//         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
-//             {GLOBAL_COLOR_LIST.map((color) => {
-//                 let contentColor = color as sColorName
+export default {
+    title: "ReactComponentLibrary/Radio",
+    component: Template,
+    argTypes: ARG_TYPES,
+    parameters: PARAMETERS,
+} as ComponentMeta<typeof Template>
 
-//                 if (color == "gray" || color == "white") {
-//                     contentColor = "gray700"
-//                 }
+export const ColorScale: ComponentStory<typeof Radio> = ({
+    ...props
+}: RadioProps) => {
+    const [selected, setSelected] = useState("green")
 
-//                 return (
-//                     <div
-//                         data-s-box="v-box"
-//                         data-s-align="center"
-//                         data-s-gap="8px"
-//                     >
-//                         <Radio
-//                             {...props}
-//                             color={color}
-//                             onClick={() => {
-//                                 console.log("hello world!")
-//                             }}
-//                         />
-//                         <h4 data-s-color={contentColor}>{color}</h4>
-//                     </div>
-//                 )
-//             })}
-//         </div>
-//     )
-// }
+    return (
+        <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
+            {GLOBAL_COLOR_LIST.map((color, index) => {
+                let contentColor = color as sColorName
 
-// ColorScale.parameters = {
-//     ...PARAMETERS,
-//     controls: {
-//         ...PARAMETERS.controls,
-//         exclude: ["color"],
-//     },
-// }
+                if (color == "gray" || color == "white") {
+                    contentColor = "gray700"
+                }
+
+                return (
+                    <div
+                        data-s-box="v-box"
+                        data-s-align="center"
+                        data-s-gap="8px"
+                        key={index}
+                    >
+                        <Radio
+                            {...props}
+                            color={color}
+                            checked={selected == color}
+                            value={color}
+                            // hasLabel={false}
+                            onChange={(event) => {
+                                console.log(event.target.value)
+                                setSelected(event.target.value)
+                            }}
+                            hasLabel={true}
+                            onClick={() => {
+                                console.log("hello world!")
+                            }}
+                            tabIndex={index + 1}
+                        />
+                        <h4 data-s-color={contentColor}>{color}</h4>
+                    </div>
+                )
+            })}
+        </div>
+    )
+}
+
+ColorScale.parameters = {
+    ...PARAMETERS,
+    controls: {
+        ...PARAMETERS.controls,
+        exclude: ["color"],
+    },
+}

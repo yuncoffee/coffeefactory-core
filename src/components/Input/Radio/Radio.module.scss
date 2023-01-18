@@ -1,0 +1,17 @@
+@use "../../../styles/var/var";
+@use "../../../styles/mixin/mixin";
+@use "../../../styles/mixin/mixinInput";
+
+.radio {
+    @include mixinInput.setCheckerStyle(radio);
+
+    &__label {
+        &::before {
+            border-radius: var(--radius-circle);
+        }
+
+        &::after {
+            border-radius: var(--radius-circle);
+        }
+    }
+}

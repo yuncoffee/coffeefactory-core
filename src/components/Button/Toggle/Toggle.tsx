@@ -33,8 +33,8 @@ function Toggle(
             data-c-size={size}
             data-c-color={color}
             data-c-active={_isActive}
-            disabled={disabled}
             data-c-mono={isMono == false ? "false" : disabled}
+            disabled={disabled}
             className={className ? `${s.toggle} ${className}` : `${s.toggle}`}
             onClick={handleToggle}
             ref={ref}

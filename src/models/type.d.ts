@@ -83,7 +83,7 @@ export interface baseStyleAttributes {
      * sBoxVariant | sBlockVariant | sRoundVariant | sCircleVariant | sEtcVariant
      * ```
      */
-    variant?: sVariant | sButtonVariant
+    variant?: sVariant
     /**
      * component size
      *

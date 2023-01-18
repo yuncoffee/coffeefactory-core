@@ -1,26 +1,74 @@
+import React, {
+    ForwardedRef,
+    forwardRef,
+    useEffect,
+    useId,
+    useState,
+} from "react"
+import s from "./Radio.module.scss"
+import { RadioProps } from "@model/components"
 
-    import React, { ForwardedRef, forwardRef } from "react"
-    import { I } from "model"
-    import s from "../Radio.module.scss"
-    
-    const Radio = (
-        {
-            props를 작성해주세요.
-            className,
-            ...props
-        }: I,
-        ref: ForwardedRef<T>
-    ) => {
-    
-        return (
-            <div
-                className={
-                    className ? `${s.Radio} ${className}` : `${s.Radio}`
-                }
+const Radio = (
+    {
+        // props를 작성해주세요.
+        className,
+        color = "pri",
+        size = "lg",
+        name,
+        value,
+        checked,
+        hasLabel = false,
+        disabled,
+        isMono,
+        ...props
+    }: RadioProps,
+    ref: ForwardedRef<HTMLInputElement>
+) => {
+    const ID = useId()
+
+    const [init, setInit] = useState(true)
+    useEffect(() => {
+        setTimeout(() => {
+            setInit(false)
+        }, 300)
+    }, [])
+
+    return (
+        <button
+            className={className ? `${s.radio} ${className}` : `${s.radio}`}
+            data-c-init={init}
+            data-c-color={color}
+            data-c-size={size}
+            data-c-mono={isMono}
+            data-c-haslabel={hasLabel}
+            aria-checked={checked}
+            aria-disabled={disabled}
+            tabIndex={props.tabIndex}
+            onClick={(event) => {
+                const target =
+                    document.getElementById(`${props.id}`) ||
+                    document.getElementById(`${ID}`)
+                target?.click()
+            }}
+        >
+            <input
+                type={"radio"}
+                name={name}
+                className={`${s.radio__input}`}
+                value={value}
+                id={ID}
+                disabled={disabled}
+                checked={checked}
                 ref={ref}
                 {...props}
             />
-        )
-    }
+            <label className={`${s.radio__label}`} htmlFor={ID}>
+                {hasLabel && (
+                    <span className={`${s.radio__value}`}>{value}</span>
+                )}
+            </label>
+        </button>
+    )
+}
 
-    export default forwardRef(Radio)
+export default forwardRef(Radio)
