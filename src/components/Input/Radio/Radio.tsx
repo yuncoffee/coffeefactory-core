@@ -1,5 +1,7 @@
 import React, {
+    BaseSyntheticEvent,
     ForwardedRef,
+    MouseEvent,
     forwardRef,
     useEffect,
     useId,
@@ -62,7 +64,15 @@ const Radio = (
                 ref={ref}
                 {...props}
             />
-            <label className={`${s.radio__label}`} htmlFor={ID}>
+            <label
+                className={`${s.radio__label}`}
+                htmlFor={ID}
+                onClick={(event: BaseSyntheticEvent) => {
+                    event.stopPropagation()
+                    props.onClick &&
+                        props.onClick(event as MouseEvent<HTMLInputElement>)
+                }}
+            >
                 {hasLabel && (
                     <span className={`${s.radio__value}`}>{value}</span>
                 )}

@@ -1,0 +1,17 @@
+@use "../../../styles/var/var";
+@use "../../../styles/mixin/mixin";
+@use "../../../styles/mixin/mixinInput";
+
+.checkbox {
+    @include mixinInput.setCheckerStyle(checkbox);
+
+    &__label {
+        &::before {
+            border-radius: var(--radius-mid);
+        }
+
+        &::after {
+            border-radius: var(--radius-sm);
+        }
+    }
+}
