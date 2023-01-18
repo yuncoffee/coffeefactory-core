@@ -74,7 +74,8 @@ export default {
 export const ColorScale: ComponentStory<typeof Checkbox> = ({
     ...props
 }: CheckboxProps) => {
-    const [selected, setSelected] = useState("green")
+    const _value: string[] = props.value! as string[]
+    const [selected, setSelected] = useState([...GLOBAL_COLOR_LIST])
 
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
@@ -95,17 +96,21 @@ export const ColorScale: ComponentStory<typeof Checkbox> = ({
                         <Checkbox
                             {...props}
                             color={color}
-                            checked={selected == color}
-                            value={color}
-                            // hasLabel={false}
                             onChange={(event) => {
-                                console.log(event.target.value)
-                                setSelected(event.target.value)
+                                const filtered = selected.find(
+                                    (e) => e === color
+                                )
+                                if (filtered) {
+                                    setSelected(
+                                        selected.filter((e) => e !== color)
+                                    )
+                                } else {
+                                    setSelected([...selected, color])
+                                }
                             }}
+                            checked={selected.includes(color)}
+                            value={color}
                             hasLabel={true}
-                            onClick={() => {
-                                console.log("hello world!")
-                            }}
                             tabIndex={index + 1}
                         />
                         <h4 data-s-color={contentColor}>{color}</h4>

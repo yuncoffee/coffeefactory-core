@@ -45,6 +45,31 @@ $coreGap: 8px;
         padding-left: calc($labelHeight + $coreGap);
         @include mixin.font500;
     }
+
+    @if $size =="xs" or $size =="xxs" {
+
+        .#{$name}__label {
+            &::before {
+                border-radius: var(--radius-sm);
+            }
+
+            &::after {
+                border-radius: var(--radius-xs);
+                left: $coreGap / 2 - 1px;
+                top: $coreGap / 2 - 1px;
+                max-width: calc($labelHeight - $coreGap + 2px);
+                width: calc($labelHeight - $coreGap + 2px);
+                height: calc($labelHeight - $coreGap + 2px);
+            }
+        }
+    }
+
+    @if $name ==checkbox {
+        .checkbox__deco {
+            max-width: calc($labelHeight - $coreGap);
+        }
+    }
+
 }
 
 @mixin setCheckerColor($name) {
@@ -229,6 +254,7 @@ $coreGap: 8px;
 
     &__label {
         display: flex;
+        align-items: center;
         position: relative;
         cursor: pointer;
 
@@ -248,6 +274,18 @@ $coreGap: 8px;
             top: $coreGap / 2;
             width: calc(100% - $coreGap);
             height: calc(100% - $coreGap);
+        }
+    }
+
+    @if $name ==checkbox {
+        .checkbox__deco {
+            position: absolute;
+            left: $coreGap / 2;
+            top: $coreGap / 2;
+            width: calc(100% - $coreGap);
+            height: calc(100% - $coreGap);
+            z-index: 1;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAcCAYAAACdz7SqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD2SURBVHgB7ZM/C0FRGMbfZMBgUFiNVqMPIMpmMLHIIPkC90P4FCafQAxKKYvZYDApiyQJpRzPm5dON8XlHovzq1+d7vnznHvOe4gsFsvfoZRiHTiFKTKNBFbhEV5gi0wigSW4UTcGMEymkMAs3EngHCbIKzzpnZ1KYBIuJXAFM+QVTMrDPezDyIvAqBwlc4IV+gRMzGlHNYJxDngyLgS7Mu4Ay/QNWKAmO2cm7mC0A7At/VypDvkBFmpowY8/FuvwLH0dGCS/4LemBfckuAC38m3IhUR+w8WhBY/hWtozGCNTuO74/jTSZBqENOVYF7BIFovlF1wBDE5l9f7R6KkAAAAASUVORK5CYII=") no-repeat center /cover;
         }
     }
 

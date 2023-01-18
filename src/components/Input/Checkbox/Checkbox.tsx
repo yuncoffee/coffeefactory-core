@@ -75,6 +75,7 @@ const Checkbox = (
                         props.onClick(event as MouseEvent<HTMLInputElement>)
                 }}
             >
+                {checked && <div className={`${s.checkbox__deco}`} />}
                 {hasLabel && (
                     <span className={`${s.checkbox__value}`}>{value}</span>
                 )}
