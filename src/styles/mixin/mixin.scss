@@ -1,3 +1,12 @@
 @import "../var/var";
 @import "./mixinFont";
 @import "./mixinVariant";
+
+@mixin focusStyle {
+    $borderStyle__focus: var(--border-weight-regular) dashed;
+
+    &:focus-visible {
+        border: $borderStyle__focus rgba(var(--focus-base), 1);
+        box-shadow: 0 0 6px 2px rgba(var(--focus-base), 0.2);
+    }
+}

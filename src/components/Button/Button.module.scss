@@ -2,12 +2,11 @@
 @use "../../styles/mixin/mixin";
 
 
-$buttonBlockRadius : var(--radius-mid);
-$buttonCircleRadius: var(--radius-circle);
-$buttonRoundRadius: var(--radius-round);
+$blockRadius : var(--radius-mid);
+$circleRadius: var(--radius-circle);
+$roundRadius: var(--radius-round);
 $buttonTransition: var(--transition-normal);
-$buttonBorderStyle: var(--border-weight-regular) solid;
-$buttonBorderStyle__Focus: var(--border-weight-regular) dashed;
+$borderStyle: var(--border-weight-regular) solid;
 $buttonPadding: 8px 16px;
 $buttonMinWidth : 120px;
 
@@ -40,23 +39,21 @@ $buttonMinWidth : 120px;
     $contents: 700;
 
     &[data-c-color="#{$key}"] {
-        &:focus-visible {
-            border : $buttonBorderStyle__Focus rgba(var(--#{$key}#{$darkness}), 1)
-        }
+        @include mixin.focusStyle;
     }
 
     @include mixin.fillStyle($variant) {
         &[data-c-color="#{$key}"] {
             background: rgba(var(--#{$key}#{$base}), 1);
             color: rgba(var(--#{$key}#{$contents}), 1);
-            border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 0);
+            border: $borderStyle rgba(var(--#{$key}#{$darkness}), 0);
 
             &:hover {
                 background: rgba(var(--#{$key}#{$dark}), 1);
             }
 
             &:active {
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 1);
             }
         }
     }
@@ -65,16 +62,16 @@ $buttonMinWidth : 120px;
         &[data-c-color="#{$key}"] {
             background: rgba(var(--#{$key}#{$base}), 0);
             color: rgba(var(--#{$key}#{$contents}), 1);
-            border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+            border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
 
             &:hover {
                 background: rgba(var(--#{$key}#{$dark}), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
                 color: rgba(var(--#{$key}#{$contents}), 1);
             }
 
             &:active {
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 1);
             }
         }
     }
@@ -83,16 +80,16 @@ $buttonMinWidth : 120px;
         &[data-c-color="#{$key}"] {
             background: rgba(var(--#{$key}#{$base}), 0);
             color: rgba(var(--#{$key}#{$contents}), 1);
-            border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 0);
+            border: $borderStyle rgba(var(--#{$key}#{$dark}), 0);
 
             &:hover {
                 background: rgba(var(--#{$key}#{$dark}), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$dark}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
                 color: rgba(var(--#{$key}#{$contents}), 1);
             }
 
             &:active {
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 1);
             }
         }
     }
@@ -101,7 +98,7 @@ $buttonMinWidth : 120px;
         &[data-c-color="#{$key}"] {
             background: rgba(var(--#{$key}#{$base}), 0);
             color: rgba(var(--#{$key}#{$contents}), 1);
-            border: $buttonBorderStyle rgba(var(--#{$key}#{$base}), 0);
+            border: $borderStyle rgba(var(--#{$key}#{$base}), 0);
 
             &:hover {
                 background: rgba(var(--#{$key}#{$base}), 0);
@@ -109,7 +106,7 @@ $buttonMinWidth : 120px;
             }
 
             &:active {
-                border: $buttonBorderStyle rgba(var(--#{$key}#{$darkness}), 0);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 0);
             }
         }
     }
@@ -122,9 +119,7 @@ $buttonMinWidth : 120px;
     $value in var.$globalColorList {
 
         &[data-c-color="#{$key}"] {
-            &:focus-visible {
-                border : $buttonBorderStyle__Focus rgba(var(--#{$key}-darkness), 1)
-            }
+            @include mixin.focusStyle;
         }
 
 
@@ -132,14 +127,14 @@ $buttonMinWidth : 120px;
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 1);
                 color: rgba(var(--white), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 0);
+                border: $borderStyle rgba(var(--#{$key}-darkness), 0);
 
                 &:hover {
                     background: rgba(var(--#{$key}-dark), 1);
                 }
 
                 &:active {
-                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 1);
                 }
             }
         }
@@ -148,16 +143,16 @@ $buttonMinWidth : 120px;
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}-base), 1);
+                border: $borderStyle rgba(var(--#{$key}-base), 1);
 
                 &:hover {
                     background: rgba(var(--#{$key}-dark), 1);
-                    border: $buttonBorderStyle rgba(var(--#{$key}-dark), 1);
+                    border: $borderStyle rgba(var(--#{$key}-dark), 1);
                     color: rgba(var(--white), 1);
                 }
 
                 &:active {
-                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 1);
                 }
             }
         }
@@ -166,16 +161,16 @@ $buttonMinWidth : 120px;
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}-base), 0);
+                border: $borderStyle rgba(var(--#{$key}-base), 0);
 
                 &:hover {
                     background: rgba(var(--#{$key}-dark), 1);
-                    border: $buttonBorderStyle rgba(var(--#{$key}-dark), 1);
+                    border: $borderStyle rgba(var(--#{$key}-dark), 1);
                     color: rgba(var(--white), 1);
                 }
 
                 &:active {
-                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 1);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 1);
                 }
             }
         }
@@ -184,7 +179,7 @@ $buttonMinWidth : 120px;
             &[data-c-color="#{$key}"] {
                 background: rgba(var(--#{$key}-base), 0);
                 color: rgba(var(--#{$key}-base), 1);
-                border: $buttonBorderStyle rgba(var(--#{$key}-base), 0);
+                border: $borderStyle rgba(var(--#{$key}-base), 0);
 
                 &:hover {
                     background: rgba(var(--#{$key}-base), 0);
@@ -192,7 +187,7 @@ $buttonMinWidth : 120px;
                 }
 
                 &:active {
-                    border: $buttonBorderStyle rgba(var(--#{$key}-darkness), 0);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 0);
                 }
             }
         }
@@ -202,7 +197,7 @@ $buttonMinWidth : 120px;
 @mixin setButtonRadius($variant) {
 
     @include mixin.blockStyle($variant) {
-        border-radius: $buttonBlockRadius;
+        border-radius: $blockRadius;
     }
 
     @include mixin.boxStyle($variant) {
@@ -210,11 +205,11 @@ $buttonMinWidth : 120px;
     }
 
     @include mixin.circleStyle($variant) {
-        border-radius: $buttonCircleRadius;
+        border-radius: $circleRadius;
     }
 
     @include mixin.roundStyle($variant) {
-        border-radius: $buttonRoundRadius;
+        border-radius: $roundRadius;
     }
 }
 

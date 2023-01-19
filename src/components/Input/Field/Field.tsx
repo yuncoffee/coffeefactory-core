@@ -15,10 +15,13 @@ import s from "./Field.module.scss"
 const Field = (
     {
         className,
-        type = "text",
+        type = "search",
         size = "lg",
-        name = "hello",
-        placeholder = "empty Text!",
+        name = "name",
+        placeholder = "placeholder",
+        variant = "round",
+        color = "gray",
+        hasLabel = true,
         ...props
     }: FieldProps,
     ref: ForwardedRef<HTMLInputElement>
@@ -33,12 +36,13 @@ const Field = (
     const [hasvalue, setHasValue] = useState(false)
 
     useEffect(() => {
-        setPhMargin(
-            labelRef.current!.getBoundingClientRect().width +
-                FIELD_PADDING +
-                LABEL_PLACEHOLDER_GAP
-        )
-    }, [name])
+        hasLabel &&
+            setPhMargin(
+                labelRef.current!.getBoundingClientRect().width +
+                    FIELD_PADDING +
+                    LABEL_PLACEHOLDER_GAP
+            )
+    }, [name, hasLabel])
 
     const checkHasValue = (event: BaseSyntheticEvent) => {
         if (event.target.value.length === 0) {
@@ -69,21 +73,30 @@ const Field = (
             data-c-size={size}
             data-c-focus={isFocus}
             data-c-hasvalue={hasvalue}
+            data-c-variant={variant}
+            data-c-haslabel={hasLabel}
+            data-c-color={color}
             className={className ? `${s.field} ${className}` : `${s.field}`}
         >
+            {hasLabel && (
+                <label
+                    className={`${s.field__label}`}
+                    ref={labelRef}
+                    htmlFor={props.id ? props.id : ID}
+                >
+                    {name}
+                </label>
+            )}
             <label
-                className={`${s.field__label}`}
-                ref={labelRef}
-                htmlFor={props.id ? props.id : ID}
-            >
-                {name}
-            </label>
-            <label
-                style={{ left: `${phMargin}px` }}
+                style={
+                    hasLabel
+                        ? { left: `${phMargin}px` }
+                        : { left: `${FIELD_PADDING}px` }
+                }
                 className={`${s.field__placeholder}`}
                 htmlFor={props.id ? props.id : ID}
             >
-                {`: ${placeholder}`}
+                {hasLabel ? `: ${placeholder}` : `${placeholder}`}
             </label>
             <input
                 type={type}

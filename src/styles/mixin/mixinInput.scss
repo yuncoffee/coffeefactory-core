@@ -2,7 +2,6 @@
 
 $transition : var(--transition-normal);
 $borderStyle: var(--border-weight-regular) solid;
-$borderStyle__focus: var(--border-weight-regular) dashed;
 $coreGap: 8px;
 
 
@@ -84,9 +83,7 @@ $coreGap: 8px;
         border: $borderStyle rgba(var(--gray#{$darkness}), 0);
 
         // tab을 통해 focus 되었을 경우
-        &:focus-visible {
-            border : $borderStyle__focus rgba(var(--gray#{$darkness}), 1)
-        }
+        @include mixin.focusStyle;
 
         // hover 중일 때
         &:hover {
@@ -165,9 +162,7 @@ $coreGap: 8px;
             border: $borderStyle rgba(var(--#{$key}-darkness), 0);
 
             // tab을 통해 focus 되었을 경우
-            &:focus-visible {
-                border : $borderStyle__focus rgba(var(--#{$key}-darkness), 1)
-            }
+            @include mixin.focusStyle;
 
             // hover 중일 때
             &:hover {

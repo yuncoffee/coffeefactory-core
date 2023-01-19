@@ -2,13 +2,21 @@
 @use "../../../styles/mixin/mixin";
 
 $inputPadding: 0 8px;
+
 $inputContentColor : rgba(var(--gray700), 1);
 $labelContentColor : rgba(var(--gray600), 1);
 $placeholderContentColor: rgba(var(--gray500), 1);
 
 $labelTransition: var(--transition-slow);
+$inputTransition: var(--transition-normal);
 
-@mixin setSize() {
+$blockRadius : var(--radius-mid);
+$roundRadius: var(--radius-round);
+
+$borderStyle: var(--border-weight-regular) solid;
+
+
+@mixin setSize {
 
     @each $name,
     $value in var.$sizeList {
@@ -18,11 +26,17 @@ $labelTransition: var(--transition-slow);
             max-height: var(--#{$name});
 
             @if $name =="xxl" {
-                @include mixin.font500();
+
+                .field__input {
+                    @include mixin.font500();
+                }
             }
 
             @if $name =="xxs" {
-                @include mixin.font300();
+
+                .field__input {
+                    @include mixin.font300();
+                }
             }
 
             .field__label {
@@ -48,11 +62,231 @@ $labelTransition: var(--transition-slow);
     }
 }
 
+@mixin setColor($variant) {
+
+    @each $key,
+    $value in var.$globalColorList {
+
+        &[data-c-color="#{$key}"] {
+            .field__input {
+                @include mixin.focusStyle;
+            }
+
+        }
+
+
+        @include mixin.fillStyle($variant) {
+            &[data-c-color="#{$key}"] {
+
+                .field__input {
+                    background: rgba(var(--#{$key}-base), 0.05);
+                    border: $borderStyle rgba(var(--#{$key}-darkness), 0.1);
+
+                    &:hover {
+                        background: rgba(var(--#{$key}-dark), 0.1);
+                    }
+
+                    &:active {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
+                    }
+                }
+            }
+        }
+
+        @include mixin.lineStyle($variant) {
+            &[data-c-color="#{$key}"] {
+
+                .field__input {
+                    background: rgba(var(--#{$key}-base), 0);
+                    border: $borderStyle rgba(var(--#{$key}-base), 1);
+
+                    &:hover {
+                        background: rgba(var(--#{$key}-dark), 0.1);
+                        border: $borderStyle rgba(var(--#{$key}-dark), 1);
+                    }
+
+                    &:active {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
+                    }
+                }
+            }
+        }
+
+        @include mixin.ghostStyle($variant) {
+            &[data-c-color="#{$key}"] {
+
+                .field__input {
+                    background: rgba(var(--#{$key}-base), 0);
+                    border: $borderStyle rgba(var(--#{$key}-base), 0);
+
+                    &:hover {
+                        background: rgba(var(--#{$key}-dark), 0.1);
+                        border: $borderStyle rgba(var(--#{$key}-dark), 1);
+                    }
+
+                    &:active {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
+                    }
+                }
+            }
+        }
+
+        @include mixin.textStyle($variant) {
+
+
+            &[data-c-color="#{$key}"] {
+
+                .field__input {
+                    background: rgba(var(--#{$key}-base), 0);
+                    border: $borderStyle rgba(var(--#{$key}-base), 0);
+
+                    &:hover {
+                        background: rgba(var(--#{$key}-base), 0);
+                    }
+
+                    &:active {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin setGrayColor($variant) {
+    $key: "gray";
+    $base: 200;
+    $dark: 300;
+    $darkness: 400;
+    $darkest: 500;
+    $contents: 700;
+
+    &[data-c-color="#{$key}"] {
+        .field__input {
+            @include mixin.focusStyle;
+        }
+    }
+
+    @include mixin.fillStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .field__input {
+                background: rgba(var(--#{$key}#{$base}), 1);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 1);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.lineStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .field__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 0.3);
+                    border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+                    color: rgba(var(--#{$key}#{$contents}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.ghostStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            .field__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 0);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 0.3);
+                    border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.textStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .field__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$base}), 0);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$base}), 0);
+                    color: rgba(var(--#{$key}900), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkness}), $darkest);
+                }
+            }
+        }
+    }
+
+}
+
+@mixin setRadius($variant) {
+
+    @include mixin.blockStyle($variant) {
+        .field__input {
+            border-radius: $blockRadius;
+        }
+    }
+
+    @include mixin.boxStyle($variant) {
+        .field__input {
+            border-radius: 0;
+        }
+    }
+
+    @include mixin.roundStyle($variant) {
+        .field__input {
+            border-radius: $roundRadius;
+        }
+    }
+}
+
+@mixin setVariant {
+    @each $variant in var.$variantList {
+        &[data-c-variant="#{$variant}"] {
+            @include setColor($variant);
+            @include setGrayColor($variant);
+            @include setRadius($variant);
+        }
+    }
+}
 
 .field {
     position: relative;
     min-width: 120px;
     margin-top: 18px;
+
+    &[data-c-haslabel="false"] {
+        margin-top: 0;
+    }
 
     &__label {
         position: absolute;
@@ -81,11 +315,18 @@ $labelTransition: var(--transition-slow);
         background: transparent;
         color: $inputContentColor;
         @include mixin.font400();
+        transition: $inputTransition;
 
         &::placeholder {
             color: transparent;
         }
+
+        &::-webkit-search-cancel-button {
+            visibility: hidden;
+        }
     }
 
-    @include setSize();
+
+    @include setSize;
+    @include setVariant;
 }

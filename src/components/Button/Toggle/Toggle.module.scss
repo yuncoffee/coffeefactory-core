@@ -4,7 +4,6 @@
 
 $transition : var(--transition-slow);
 $borderStyle: var(--border-weight-regular) solid;
-$borderStyle__focus: var(--border-weight-regular) dashed;
 $shadow: 0 0 3px 2px rgba(var(--black), 0.1);
 $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
 
@@ -62,9 +61,7 @@ $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
         color: rgba(var(--gray#{$contents}), 1);
         border: $borderStyle rgba(var(--gray#{$darkness}), 0);
 
-        &:focus-visible {
-            border : $borderStyle__focus rgba(var(--gray#{$darkness}), 1)
-        }
+        @include mixin.focusStyle;
 
         &:active {
             border: $borderStyle rgba(var(--gray#{$darkness}), 1);
@@ -107,9 +104,7 @@ $shadow__inset1 : inset -1px -1px 2px 1px rgba(var(--black), 0.15);
             color: rgba(var(--white), 1);
             border: $borderStyle rgba(var(--#{$key}-darkness), 0);
 
-            &:focus-visible {
-                border : $borderStyle__focus rgba(var(--#{$key}-darkness), 1)
-            }
+            @include mixin.focusStyle;
 
             &:hover {
                 background: rgba(var(--#{$key}-lightness), 1);

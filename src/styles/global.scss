@@ -65,4 +65,8 @@
     $value in var.$globalGrayMapList {
         --#{$colorName}: #{$value}
     }
+
+    --focus-base: 1,
+    102,
+    255;
 }
