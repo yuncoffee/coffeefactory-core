@@ -1,3 +1,4 @@
+import { baseStyleAttributes } from "@model/type"
 import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react"
 
 export type inputType =
@@ -25,7 +26,11 @@ export type inputType =
     | "week"
 
 export interface InputProps
-    extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
+    extends Omit<
+            InputHTMLAttributes<HTMLInputElement>,
+            "type" | "color" | "size"
+        >,
+        baseStyleAttributes {
     className: string
     /**
      * @defaultValue - "test"
@@ -46,3 +51,5 @@ export interface InputProps
      */
     type: inputType
 }
+
+export interface FieldProps extends InputProps {}

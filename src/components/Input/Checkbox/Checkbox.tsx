@@ -60,7 +60,7 @@ const Checkbox = (
                 name={name}
                 className={`${s.checkbox__input}`}
                 value={value}
-                id={ID}
+                id={props.id ? props.id : ID}
                 disabled={disabled}
                 checked={checked}
                 ref={ref}
@@ -68,7 +68,7 @@ const Checkbox = (
             />
             <label
                 className={`${s.checkbox__label}`}
-                htmlFor={ID}
+                htmlFor={props.id ? props.id : ID}
                 onClick={(event: BaseSyntheticEvent) => {
                     event.stopPropagation()
                     props.onClick &&

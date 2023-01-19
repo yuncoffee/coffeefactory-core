@@ -110,7 +110,6 @@ export const ColorScale: ComponentStory<typeof Checkbox> = ({
                             }}
                             checked={selected.includes(color)}
                             value={color}
-                            hasLabel={true}
                             tabIndex={index + 1}
                         />
                         <h4 data-s-color={contentColor}>{color}</h4>

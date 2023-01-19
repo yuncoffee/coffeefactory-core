@@ -58,7 +58,7 @@ const Radio = (
                 name={name}
                 className={`${s.radio__input}`}
                 value={value}
-                id={ID}
+                id={props.id ? props.id : ID}
                 disabled={disabled}
                 checked={checked}
                 ref={ref}
@@ -66,7 +66,7 @@ const Radio = (
             />
             <label
                 className={`${s.radio__label}`}
-                htmlFor={ID}
+                htmlFor={props.id ? props.id : ID}
                 onClick={(event: BaseSyntheticEvent) => {
                     event.stopPropagation()
                     props.onClick &&
