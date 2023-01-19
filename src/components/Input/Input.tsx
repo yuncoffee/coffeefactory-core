@@ -1,9 +1,8 @@
 import React, { ForwardedRef, forwardRef } from "react"
-import { InputProps } from "@model/components/Input"
 import s from "./Input.module.scss"
 
 function Input(
-    { type = "text", className, ...props }: InputProps,
+    { type = "text", className, ...props }: any,
     ref: ForwardedRef<HTMLInputElement>
 ) {
     return (

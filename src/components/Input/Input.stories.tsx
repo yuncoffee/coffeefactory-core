@@ -1,10 +1,9 @@
 import React from "react"
 import { ComponentMeta } from "@storybook/react"
 import Input from "./Input"
-import { InputProps } from "@model/components"
 import { action } from "@storybook/addon-actions"
 
-export const Template = ({ ...props }: InputProps) => {
+export const Template = ({ ...props }: any) => {
     return <Input data-s-size={"xxl"} {...props} />
 }
 

@@ -54,8 +54,8 @@ $coreGap: 8px;
 
             &::after {
                 border-radius: var(--radius-xs);
-                left: $coreGap / 2 - 1px;
-                top: $coreGap / 2 - 1px;
+                left: calc($coreGap / 2) - 1px;
+                top: calc($coreGap / 2) - 1px;
                 max-width: calc($labelHeight - $coreGap + 2px);
                 width: calc($labelHeight - $coreGap + 2px);
                 height: calc($labelHeight - $coreGap + 2px);
@@ -265,8 +265,8 @@ $coreGap: 8px;
         &::after {
             content: "";
             position: absolute;
-            left: $coreGap / 2;
-            top: $coreGap / 2;
+            left: calc($coreGap / 2);
+            top: calc($coreGap / 2);
             width: calc(100% - $coreGap);
             height: calc(100% - $coreGap);
         }
@@ -275,8 +275,8 @@ $coreGap: 8px;
     @if $name ==checkbox {
         .checkbox__deco {
             position: absolute;
-            left: $coreGap / 2;
-            top: $coreGap / 2;
+            left: calc($coreGap / 2);
+            top: calc($coreGap / 2);
             width: calc(100% - $coreGap);
             height: calc(100% - $coreGap);
             z-index: 1;
