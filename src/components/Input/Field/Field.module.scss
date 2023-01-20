@@ -56,6 +56,7 @@ $borderStyle: var(--border-weight-regular) solid;
 
             .field__placeholder {
                 opacity: 0;
+                visibility: hidden
             }
         }
 
@@ -69,7 +70,7 @@ $borderStyle: var(--border-weight-regular) solid;
 
         &[data-c-color="#{$key}"] {
             .field__input {
-                @include mixin.focusStyle;
+                @include mixin.focusStyle(var(--#{$key}-darkness), solid);
             }
 
         }
@@ -84,6 +85,10 @@ $borderStyle: var(--border-weight-regular) solid;
 
                     &:hover {
                         background: rgba(var(--#{$key}-dark), 0.1);
+                    }
+
+                    &:focus {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
                     }
 
                     &:active {
@@ -103,6 +108,10 @@ $borderStyle: var(--border-weight-regular) solid;
                     &:hover {
                         background: rgba(var(--#{$key}-dark), 0.1);
                         border: $borderStyle rgba(var(--#{$key}-dark), 1);
+                    }
+
+                    &:focus {
+                        border: $borderStyle rgba(var(--#{$key}-darkness), 1);
                     }
 
                     &:active {
@@ -163,7 +172,7 @@ $borderStyle: var(--border-weight-regular) solid;
 
     &[data-c-color="#{$key}"] {
         .field__input {
-            @include mixin.focusStyle;
+            @include mixin.focusStyle(var(--#{$key}#{$darkest}), solid);
         }
     }
 
@@ -304,7 +313,7 @@ $borderStyle: var(--border-weight-regular) solid;
         @include mixin.font300();
         color: $placeholderContentColor;
         transition: $labelTransition;
-        transition-property: opacity;
+        transition-property: opacity, visibility;
     }
 
     &__input {
@@ -316,6 +325,7 @@ $borderStyle: var(--border-weight-regular) solid;
         color: $inputContentColor;
         @include mixin.font400();
         transition: $inputTransition;
+        transition-property: color, border-style, border-color, background;
 
         &::placeholder {
             color: transparent;

@@ -1,48 +1,37 @@
 import React from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { action } from "@storybook/addon-actions"
+// import { I } from "/model"
 import { GLOBAL_COLOR_LIST } from "../../../data/type"
-import { ButtonProps } from "@model/components/Button"
 import { sColorName } from "@model/type"
-import Button from "./Button"
+import Option from "./Option"
 
-export const Template = ({ ...props }: ButtonProps) => {
-    return <Button {...props} />
+export const Template = ({ ...props }) => {
+    return <Option {...props} />
 }
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
-    buttonName: { defaultValue: "Button" },
-    variant: { defaultValue: "block" },
-    color: { defaultValue: "pri" },
-    size: { defaultValue: "lg" },
+    // Add ArgTypes...
 }
 
 const PARAMETERS = {
     controls: {
         include: [
-            "buttonName",
             "onClick",
-            "variant",
-            "color",
-            "size",
-            "className",
-            "isLoading",
-            "iconName",
+            // Add Props Args(Props)..
         ],
     },
 }
 
 export default {
-    title: "ReactComponentLibrary/Button/Button",
+    title: "ReactComponentLibrary/Select/Option",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,
 } as ComponentMeta<typeof Template>
 
-export const ColorScale: ComponentStory<typeof Button> = ({
-    ...props
-}: ButtonProps) => {
+export const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
             {GLOBAL_COLOR_LIST.map((color) => {
@@ -58,7 +47,7 @@ export const ColorScale: ComponentStory<typeof Button> = ({
                         data-s-align="center"
                         data-s-gap="8px"
                     >
-                        <Button
+                        <Option
                             {...props}
                             color={color}
                             onClick={() => {

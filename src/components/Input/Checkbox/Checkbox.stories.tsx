@@ -65,7 +65,7 @@ const PARAMETERS = {
 }
 
 export default {
-    title: "ReactComponentLibrary/Checkbox",
+    title: "ReactComponentLibrary/Input/Checkbox",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,

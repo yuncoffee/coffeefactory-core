@@ -33,7 +33,7 @@ const PARAMETERS = {
 }
 
 export default {
-    title: "ReactComponentLibrary/IconButton",
+    title: "ReactComponentLibrary/Button/IconButton",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,

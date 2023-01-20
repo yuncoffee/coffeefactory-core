@@ -12,14 +12,26 @@ export const Template = ({ ...props }: FieldProps) => {
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
+    type: { defaultValue: "text" },
+    size: { defaultValue: "lg" },
+    color: { defaultValue: "gray" },
+    variant: { defaultValue: "block" },
+    name: { control: "text", defaultValue: "name" },
+    placeholder: { control: "text", defaultValue: "placeholder" },
+    hasLabel: { defaultValue: true },
     // Add ArgTypes...
 }
 
 const PARAMETERS = {
     controls: {
         include: [
-            "onClick",
-            // Add Props Args(Props)..
+            "type",
+            "size",
+            "color",
+            "variant",
+            "name",
+            "hasLabel",
+            "placeholder",
         ],
     },
 }

@@ -23,7 +23,7 @@ const PARAMETERS = {
 }
 
 export default {
-    title: "ReactComponentLibrary/Toggle",
+    title: "ReactComponentLibrary/Button/Toggle",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,

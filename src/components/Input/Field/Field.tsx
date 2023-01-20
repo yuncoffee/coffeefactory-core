@@ -15,11 +15,11 @@ import s from "./Field.module.scss"
 const Field = (
     {
         className,
-        type = "search",
+        type = "text",
         size = "lg",
         name = "name",
         placeholder = "placeholder",
-        variant = "round",
+        variant = "block",
         color = "gray",
         hasLabel = true,
         ...props

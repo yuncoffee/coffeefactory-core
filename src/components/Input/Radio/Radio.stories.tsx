@@ -55,7 +55,7 @@ const PARAMETERS = {
 }
 
 export default {
-    title: "ReactComponentLibrary/Radio",
+    title: "ReactComponentLibrary/Input/Radio",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,
