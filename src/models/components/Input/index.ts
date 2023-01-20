@@ -3,7 +3,7 @@ import {
     sBaseSize,
     sVariantExcpetCircle,
 } from "@model/type"
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react"
+import { InputHTMLAttributes } from "react"
 
 export type inputType =
     // | "button"
@@ -34,7 +34,7 @@ export interface InputProps
             InputHTMLAttributes<HTMLInputElement>,
             "type" | "color" | "size"
         >,
-        Omit<baseStyleAttributes, "size" | "variant"> {
+        baseStyleAttributes {
     /**
      * @defaultValue - "test"
      *
@@ -62,3 +62,29 @@ export interface InputProps
 }
 
 export interface FieldProps extends InputProps {}
+
+export interface CheckerProps
+    extends Omit<
+            InputHTMLAttributes<HTMLInputElement>,
+            "size" | "color" | "type"
+        >,
+        baseStyleAttributes {
+    /**
+     * set Checker Group
+     *
+     * @requires
+     */
+    name: string
+
+    /**
+     * show value on/off
+     */
+    hasLabel?: boolean
+    /**
+     * false - color style in disbled
+     */
+    isMono?: boolean
+}
+
+export interface RadioProps extends CheckerProps {}
+export interface CheckboxProps extends CheckerProps {}

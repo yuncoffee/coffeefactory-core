@@ -83,7 +83,7 @@ export interface baseStyleAttributes {
      * sBoxVariant | sBlockVariant | sRoundVariant | sCircleVariant | sEtcVariant
      * ```
      */
-    variant?: sVariant
+    variant?: sVariant | sVariantExceptRound | sVariantExcpetCircle
     /**
      * component size
      *
@@ -95,7 +95,7 @@ export interface baseStyleAttributes {
      * "xxl" | "xl" | "lg" | "mid" | "sm" | "xs" | "xxs" | "xxxs"
      * ```
      */
-    size?: sSize
+    size?: sSize | sBaseSize
     /**
      * component color
      *

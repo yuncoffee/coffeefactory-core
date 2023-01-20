@@ -8,7 +8,7 @@ import React, {
     useState,
 } from "react"
 import s from "./Checkbox.module.scss"
-import { CheckboxProps } from "@model/components"
+import { CheckboxProps } from "@model/components/Input"
 
 const Checkbox = (
     {

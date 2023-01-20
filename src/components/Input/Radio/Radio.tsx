@@ -8,7 +8,7 @@ import React, {
     useState,
 } from "react"
 import s from "./Radio.module.scss"
-import { RadioProps } from "@model/components"
+import { RadioProps } from "@model/components/Input"
 
 const Radio = (
     {

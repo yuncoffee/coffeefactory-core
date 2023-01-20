@@ -11,11 +11,13 @@ const Option = (
     ref: ForwardedRef<HTMLUListElement>
 ) => {
     return (
-        <div
+        <ul
             className={className ? `${s.option} ${className}` : `${s.option}`}
             ref={ref}
             {...props}
-        />
+        >
+            <li>helloworld!</li>
+        </ul>
     )
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
-import { CheckboxProps } from "@model/components"
+import { CheckboxProps } from "@model/components/Input"
 import { GLOBAL_COLOR_LIST } from "../../../data/type"
 import { sColorName } from "@model/type"
 import Checkbox from "./Checkbox"
