@@ -25,7 +25,7 @@ const PARAMETERS = {
 }
 
 export default {
-    title: "ReactComponentLibrary/Select/Select",
+    title: "ReactComponentLibrary/Select",
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,
