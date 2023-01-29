@@ -84,6 +84,7 @@ export interface baseStyleAttributes {
      * ```
      */
     variant?: sVariant | sVariantExceptRound | sVariantExcpetCircle
+
     /**
      * component size
      *

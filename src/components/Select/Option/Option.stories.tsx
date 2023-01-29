@@ -7,7 +7,16 @@ import { sColorName } from "@model/type"
 import Option from "./Option"
 
 export const Template = ({ ...props }) => {
-    return <Option {...props} />
+    return (
+        <Option
+            {...props}
+            onClick={(event) => {
+                console.log(event.target)
+                console.log(event.currentTarget)
+                console.log("hello world!")
+            }}
+        />
+    )
 }
 
 const ARG_TYPES = {
@@ -34,7 +43,7 @@ export default {
 export const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
-            {GLOBAL_COLOR_LIST.map((color) => {
+            {GLOBAL_COLOR_LIST.map((color, index) => {
                 let contentColor = color as sColorName
 
                 if (color == "gray" || color == "white") {
@@ -46,11 +55,14 @@ export const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
                         data-s-box="v-box"
                         data-s-align="center"
                         data-s-gap="8px"
+                        key={index}
                     >
                         <Option
                             {...props}
                             color={color}
-                            onClick={() => {
+                            onClick={(event) => {
+                                console.log(event.target)
+                                console.log(event.currentTarget)
                                 console.log("hello world!")
                             }}
                         />
