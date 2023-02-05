@@ -4,11 +4,10 @@ import s from "./Option.module.scss"
 
 const Option = (
     {
-        // props를 작성해주세요.
         optionList,
         onClick,
         variant = "block",
-        size = "mid",
+        size = "xxs",
         className,
         optionNullDisplayLabel = "Empty Option",
         ...props
@@ -24,6 +23,7 @@ const Option = (
             ref={ref}
             {...props}
         >
+            {/* optionList가 있을 경우 */}
             {optionList ? (
                 optionList.map((optionItem, index) => {
                     return (
@@ -40,6 +40,7 @@ const Option = (
                     )
                 })
             ) : (
+                // 옵션이 비어있을 경우
                 <li
                     className={`${s.option__item} ${s.option__null}`}
                     data-index={-1}

@@ -1,10 +1,52 @@
 @use "../../../styles/var/var";
 @use "../../../styles/mixin/mixin";
 
+$blockRadius : var(--radius-mid);
+$roundRadius: var(--radius-round);
+
+@mixin setSize {
+
+    @each $name,
+    $value in var.$sizeList {
+        &[data-c-size="#{$name}"] {
+
+            .option__item {
+                height: var(--#{$name});
+                min-height: var(--#{$name});
+                max-height: var(--#{$name});
+            }
+        }
+    }
+}
+
+@mixin setRadius($variant) {
+    @include mixin.blockStyle($variant) {
+        border-radius: $blockRadius;
+    }
+
+    @include mixin.boxStyle($variant) {
+        border-radius: 0;
+    }
+
+    @include mixin.roundStyle($variant) {
+        border-radius: $roundRadius;
+    }
+}
+
+@mixin setVariant {
+    @each $variant in var.$variantList {
+        &[data-c-variant="#{$variant}"] {
+            @include setRadius($variant);
+        }
+    }
+}
+
 .option {
     background: tomato;
-
+    padding: var(--border-weight-regular);
     max-width: map-get(var.$sizeList, "xxl");
-    min-height: 48px;
     @include mixin.font400;
+
+    @include setSize;
+    @include setVariant;
 }

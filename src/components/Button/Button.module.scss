@@ -11,7 +11,7 @@ $buttonPadding: 8px 16px;
 $buttonMinWidth : 120px;
 
 
-@mixin setButtonSize($size, $type: "button") {
+@mixin setSize($size, $type: "button") {
     height: var(--#{$size});
     min-height: var(--#{$size});
     max-height: var(--#{$size});
@@ -263,7 +263,7 @@ $buttonMinWidth : 120px;
     @each $size,
     $value in var.$sizeList {
         &[data-c-size="#{$size}"] {
-            @include setButtonSize($size);
+            @include setSize($size);
         }
     }
 }
@@ -273,7 +273,7 @@ $buttonMinWidth : 120px;
     @each $size,
     $value in var.$sizeList {
         &[data-c-size="#{$size}"] {
-            @include setButtonSize($size, "iconButton");
+            @include setSize($size, "iconButton");
         }
     }
 }
