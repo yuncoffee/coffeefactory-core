@@ -32,7 +32,7 @@ $optionItemBgColor: var(--white);
                 @include mixin.font500();
             }
 
-            @if $name =="xxs" {
+            @if $name =="xxs" or $name =="xxxs" {
                 @include mixin.font300();
             }
         }
@@ -72,7 +72,7 @@ $optionItemBgColor: var(--white);
 @mixin setColor($variant) {
     // @include mixin.fillStyle($variant)
     border: $borderStyle rgba($optionBorderColor, 1);
-    background: rgba($optionBgColor, 0.5);
+    background: rgba($optionBgColor, 0.6);
     backdrop-filter: blur(30px);
 
     .option__item {
@@ -82,13 +82,14 @@ $optionItemBgColor: var(--white);
         // 옵션이 비어있을 경우
         &[data-name="null"] {
             background: rgba(var(--gray300), 1);
+            box-shadow: inset 0 0 0 0 rgba($optionBorderColor, 0);
             color: rgba(var(--gray600), 1);
             cursor: auto;
         }
 
         &:hover:not([data-name="null"]) {
-            background: rgba($optionItemBgColor, 0.5);
-            text-decoration: underline;
+            background: rgba($optionItemBgColor, 0.2);
+            box-shadow: inset 0 0 6px 4px rgba($optionBorderColor, 0.5);
         }
     }
 }
@@ -111,6 +112,7 @@ $optionItemBgColor: var(--white);
     @include setSize;
     @include setVariant;
     transition: $optionTransition;
+    box-shadow: 0 0 6px 2px rgba((var(--black)), 0.1);
 }
 
 .option__item {
