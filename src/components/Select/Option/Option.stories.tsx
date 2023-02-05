@@ -65,6 +65,11 @@ export const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
                                 console.log(event.currentTarget)
                                 console.log("hello world!")
                             }}
+                            optionList={[
+                                { name: "hello" },
+                                { name: "world" },
+                                { name: "hello worldasdadasd!" },
+                            ]}
                         />
                         <h4 data-s-color={contentColor}>{color}</h4>
                     </div>

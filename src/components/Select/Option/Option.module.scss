@@ -1,8 +1,18 @@
 @use "../../../styles/var/var";
 @use "../../../styles/mixin/mixin";
 
+$variantList: "block", "box", "round";
+
 $blockRadius : var(--radius-mid);
 $roundRadius: var(--radius-round);
+$optionTransition: var(--transition-normal);
+
+$borderStyle: var(--border-weight-light) solid;
+
+$optionBgColor: var(--gray200);
+$optionBorderColor: var(--gray400);
+
+$optionItemBgColor: var(--white);
 
 @mixin setSize {
 
@@ -11,9 +21,19 @@ $roundRadius: var(--radius-round);
         &[data-c-size="#{$name}"] {
 
             .option__item {
-                height: var(--#{$name});
-                min-height: var(--#{$name});
-                max-height: var(--#{$name});
+                height: calc(var(--#{$name}) / 1.5 + 4px);
+                min-height: calc(var(--#{$name}) / 1.5 + 8px);
+                min-width: calc(var(--#{$name}) * 2);
+                max-height: calc(var(--#{$name}) / 1.5 + 4px);
+                text-align: center;
+            }
+
+            @if $name =="xxl" {
+                @include mixin.font500();
+            }
+
+            @if $name =="xxs" {
+                @include mixin.font300();
             }
         }
     }
@@ -22,6 +42,10 @@ $roundRadius: var(--radius-round);
 @mixin setRadius($variant) {
     @include mixin.blockStyle($variant) {
         border-radius: $blockRadius;
+
+        .option__item {
+            border-radius: calc($blockRadius - 2px);
+        }
     }
 
     @include mixin.boxStyle($variant) {
@@ -29,24 +53,73 @@ $roundRadius: var(--radius-round);
     }
 
     @include mixin.roundStyle($variant) {
-        border-radius: $roundRadius;
+        $_borderRadius: 24px;
+
+        @each $name,
+        $value in var.$sizeList {
+            &[data-c-size="#{$name}"] {
+                border-radius: $_borderRadius;
+                $_borderRadius: $_borderRadius - 2px;
+            }
+        }
+
+        .option__item {
+            border-radius: $roundRadius;
+        }
+    }
+}
+
+@mixin setColor($variant) {
+    // @include mixin.fillStyle($variant)
+    border: $borderStyle rgba($optionBorderColor, 1);
+    background: rgba($optionBgColor, 0.5);
+    backdrop-filter: blur(30px);
+
+    .option__item {
+        border: $borderStyle rgba($optionBorderColor, 0);
+        background: rgba($optionItemBgColor, 0);
+
+        // 옵션이 비어있을 경우
+        &[data-name="null"] {
+            background: rgba(var(--gray300), 1);
+            color: rgba(var(--gray600), 1);
+            cursor: auto;
+        }
+
+        &:hover:not([data-name="null"]) {
+            background: rgba($optionItemBgColor, 0.5);
+            text-decoration: underline;
+        }
     }
 }
 
 @mixin setVariant {
-    @each $variant in var.$variantList {
+    @each $variant in $variantList {
         &[data-c-variant="#{$variant}"] {
             @include setRadius($variant);
+            @include setColor($variant);
         }
     }
 }
 
 .option {
-    background: tomato;
     padding: var(--border-weight-regular);
-    max-width: map-get(var.$sizeList, "xxl");
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     @include mixin.font400;
-
     @include setSize;
     @include setVariant;
+    transition: $optionTransition;
+}
+
+.option__item {
+    padding: 0 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: $optionTransition;
+    color: rgba(var(--gray700), 1);
 }

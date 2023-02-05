@@ -7,7 +7,7 @@ const Option = (
         optionList,
         onClick,
         variant = "block",
-        size = "xxs",
+        size = "sm",
         className,
         optionNullDisplayLabel = "Empty Option",
         ...props
