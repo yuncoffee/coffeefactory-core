@@ -11,7 +11,22 @@ interface sbArgTypes {
     sb_only_width: number
 }
 
-const SB_ONLY_OPTION_LIST = ["sb_only_has_option", "sb_only_width"]
+class SbArgTypes implements sbArgTypes {
+    sb_only_has_option: boolean
+    sb_only_width: number
+
+    constructor(sb_only_has_option: boolean, sb_only_width: number) {
+        this.sb_only_has_option = sb_only_has_option
+        this.sb_only_width = sb_only_width
+    }
+}
+
+const OptionSbArgTypes = new SbArgTypes(true, 200)
+
+const SB_ONLY_OPTION_LIST: Array<keyof sbArgTypes> = [
+    "sb_only_has_option",
+    "sb_only_width",
+]
 
 function removeSbArgTypesToProps<T extends { [key: string]: any }>(
     sbOpionList: string[],
@@ -37,10 +52,13 @@ export const Template = ({ ...props }: OptionProps) => {
     // SAMPLE
     const _props = props as sbOptionProps
     const exceptSbProps = removeSbArgTypesToProps(SB_ONLY_OPTION_LIST, props)
-
+    const exceptSbProps2 = removeSbArgTypesToProps(
+        Object.keys(OptionSbArgTypes),
+        props
+    )
     return (
         <Option
-            {...exceptSbProps}
+            {...exceptSbProps2}
             optionList={_props.sb_only_has_option ? _props.optionList : null}
             style={{ width: `${_props.sb_only_width}px` }}
             onClick={(event) => {
