@@ -1,15 +1,48 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { action } from "@storybook/addon-actions"
-// import { I } from "/model"
+import { OptionProps } from "@model/components/Select"
 import { GLOBAL_COLOR_LIST } from "../../../data/type"
 import { sColorName } from "@model/type"
 import Option from "./Option"
 
-export const Template = ({ ...props }) => {
+interface sbArgTypes {
+    sb_only_has_option: boolean
+    sb_only_width: number
+}
+
+const SB_ONLY_OPTION_LIST = ["sb_only_has_option", "sb_only_width"]
+
+function removeSbArgTypesToProps<T extends { [key: string]: any }>(
+    sbOpionList: string[],
+    props: T
+): T {
+    const result = { ...props }
+
+    sbOpionList.forEach((key: string) => {
+        delete result[key]
+    })
+    return result
+}
+
+interface sbOptionProps extends OptionProps, sbArgTypes {}
+
+const SAMPLE_OPTIONLIST = [
+    { name: "hello" },
+    { name: "world" },
+    { name: "hello worldasdadasd!" },
+]
+
+export const Template = ({ ...props }: OptionProps) => {
+    // SAMPLE
+    const _props = props as sbOptionProps
+    const exceptSbProps = removeSbArgTypesToProps(SB_ONLY_OPTION_LIST, props)
+
     return (
         <Option
-            {...props}
+            {...exceptSbProps}
+            optionList={_props.sb_only_has_option ? _props.optionList : null}
+            style={{ width: `${_props.sb_only_width}px` }}
             onClick={(event) => {
                 console.log(event.target)
                 console.log(event.currentTarget)
@@ -21,14 +54,26 @@ export const Template = ({ ...props }) => {
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
-    // Add ArgTypes...
+    size: { defaultValue: "lg" },
+    optionNullDisplayLabel: { defaultValue: "Empty Option" },
+    variant: { defaultValue: "block" },
+    optionList: { defaultValue: SAMPLE_OPTIONLIST },
+    // sb only
+    sb_only_has_option: { control: "boolean", defaultValue: true },
+    sb_only_width: { control: "number", defaultValue: 200 },
 }
 
 const PARAMETERS = {
     controls: {
         include: [
             "onClick",
-            // Add Props Args(Props)..
+            "size",
+            "variant",
+            "optionNullDisplayLabel",
+            "optionList",
+            // sb only
+            "sb_only_has_option",
+            "sb_only_width",
         ],
     },
 }
@@ -38,9 +83,9 @@ export default {
     component: Template,
     argTypes: ARG_TYPES,
     parameters: PARAMETERS,
-} as ComponentMeta<typeof Template>
+} as ComponentMeta<typeof Option>
 
-export const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
+const ColorScale: ComponentStory<typeof Option> = ({ ...props }) => {
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
             {GLOBAL_COLOR_LIST.map((color, index) => {
