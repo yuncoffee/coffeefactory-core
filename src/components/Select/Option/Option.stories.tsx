@@ -77,8 +77,14 @@ const ARG_TYPES = {
     variant: { defaultValue: "block" },
     optionList: { defaultValue: SAMPLE_OPTIONLIST },
     // sb only
-    sb_only_has_option: { control: "boolean", defaultValue: true },
-    sb_only_width: { control: "number", defaultValue: 200 },
+    sb_only_has_option: {
+        control: "boolean",
+        defaultValue: OptionSbArgTypes.sb_only_has_option,
+    },
+    sb_only_width: {
+        control: "number",
+        defaultValue: OptionSbArgTypes.sb_only_width,
+    },
 }
 
 const PARAMETERS = {

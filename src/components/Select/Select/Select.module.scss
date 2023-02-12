@@ -1,3 +1,260 @@
+@use "../../../styles/var/var";
+@use "../../../styles/mixin/mixin";
 
-    @use "../../../styles/var/var";
-    @use "../../../styles/mixin/mixin";
+$inputPadding: 0 8px;
+
+$inputContentColor : rgba(var(--gray700), 1);
+$labelContentColor : rgba(var(--gray600), 1);
+$placeholderContentColor: rgba(var(--gray500), 1);
+
+$inputTransition: var(--transition-normal);
+$labelTransition: var(--transition-slow);
+
+$blockRadius : var(--radius-mid);
+$roundRadius: var(--radius-round);
+$borderStyle: var(--border-weight-regular) solid;
+
+@mixin setSize {
+
+    @each $name,
+    $value in var.$sizeList {
+        &[data-c-size="#{$name}"] {
+            height: var(--#{$name});
+            min-height: var(--#{$name});
+            max-height: var(--#{$name});
+
+            @if $name =="xxl" {
+
+                .select__input {
+                    @include mixin.font500();
+                }
+            }
+
+            @if $name =="xxs" {
+
+                .select__input {
+                    @include mixin.font300();
+                }
+            }
+
+            .select__label {
+                transform: translate3d(8px, calc(var(--#{$name}) / 2 - 50%), 0);
+            }
+
+            .select__placeholder {
+                transform: translate3d(0px, calc(var(--#{$name}) / 2 - 50%), 0);
+            }
+        }
+
+        &[data-c-focus="true"],
+        &[data-c-hasvalue="true"] {
+            .select__label {
+                transform: translate3d(0, -100%, 0);
+            }
+
+            .select__placeholder {
+                opacity: 0;
+                visibility: hidden
+            }
+        }
+
+    }
+}
+
+@mixin setGrayColor($variant) {
+    $key: "gray";
+    $base: 200;
+    $dark: 300;
+    $darkness: 400;
+    $darkest: 500;
+    $contents: 700;
+
+    &[data-c-color="#{$key}"] {
+        .select__input {
+            @include mixin.focusStyle(var(--#{$key}#{$darkest}), solid);
+        }
+    }
+
+    @include mixin.fillStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .select__input {
+                background: rgba(var(--#{$key}#{$base}), 1);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$darkness}), 1);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.lineStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .select__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 0.3);
+                    border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+                    color: rgba(var(--#{$key}#{$contents}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.ghostStyle($variant) {
+        &[data-c-color="#{$key}"] {
+            .select__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$dark}), 0);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$dark}), 0.3);
+                    border: $borderStyle rgba(var(--#{$key}#{$dark}), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkest}), 1);
+                }
+            }
+        }
+    }
+
+    @include mixin.textStyle($variant) {
+        &[data-c-color="#{$key}"] {
+
+            .select__input {
+                background: rgba(var(--#{$key}#{$base}), 0);
+                color: rgba(var(--#{$key}#{$contents}), 1);
+                border: $borderStyle rgba(var(--#{$key}#{$base}), 0);
+
+                &:hover {
+                    background: rgba(var(--#{$key}#{$base}), 0);
+                    color: rgba(var(--#{$key}900), 1);
+                }
+
+                &:active {
+                    border: $borderStyle rgba(var(--#{$key}#{$darkness}), $darkest);
+                }
+            }
+        }
+    }
+
+}
+
+@mixin setRadius($variant) {
+
+    @include mixin.blockStyle($variant) {
+        .select__input {
+            border-radius: $blockRadius;
+        }
+    }
+
+    @include mixin.boxStyle($variant) {
+        .select__input {
+            border-radius: 0;
+        }
+    }
+
+    @include mixin.roundStyle($variant) {
+        .select__input {
+            border-radius: $roundRadius;
+        }
+    }
+}
+
+@mixin setVariant {
+    @each $variant in var.$variantList {
+        &[data-c-variant="#{$variant}"] {
+
+            @include setGrayColor($variant);
+            @include setRadius($variant);
+        }
+    }
+}
+
+.select {
+    position: relative;
+    min-width: 120px;
+    margin-top: 18px;
+
+    &[data-c-haslabel="false"] {
+        margin-top: 0;
+    }
+
+    &[data-c-showoption="true"] {
+        .select__deco {
+            transform: translate3d(0, -50%, 0) rotate(180deg);
+        }
+    }
+
+    &__label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include mixin.font300();
+        color: $labelContentColor;
+        transition: $labelTransition;
+        transition-property: transform;
+    }
+
+    &__placeholder {
+        position: absolute;
+        top: 0;
+        @include mixin.font300();
+        color: $placeholderContentColor;
+        transition: $labelTransition;
+        transition-property: opacity, visibility;
+    }
+
+    &__deco {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        width: 24px;
+        height: 24px;
+        max-height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate3d(0, -50%, 0) rotate(0);
+        @include mixin.font700();
+        color: $inputContentColor;
+        transition: $labelTransition;
+    }
+
+    &__input {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: $inputPadding;
+        background: transparent;
+        color: $inputContentColor;
+        @include mixin.font400();
+        transition: $inputTransition;
+        transition-property: color, border-style, border-color, background;
+
+        &::placeholder {
+            color: transparent;
+        }
+
+    }
+
+    @include setSize;
+    @include setVariant;
+}
