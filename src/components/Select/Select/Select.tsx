@@ -22,7 +22,7 @@ const Select = (
         size = "lg",
         name = "name",
         placeholder = "placeholder",
-        variant = "block",
+        variant = "box",
         hasLabel = true,
         ...props
     }: SelectProps,

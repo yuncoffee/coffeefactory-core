@@ -46,11 +46,12 @@ export interface OptionProps
 export interface SelectProps
     extends Omit<HTMLAttributes<HTMLDivElement>, "color">,
         baseStyleAttributes {
-    optionList: OptionItem[]
     optionDirection: string
     hasLabel?: boolean
     name?: string
     variant?: "box" | "block" | "round"
+
     selectedOption?: OptionItem
+    optionList: OptionItem[]
     optionNullDisplayLabel?: string
 }

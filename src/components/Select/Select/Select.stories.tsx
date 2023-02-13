@@ -5,10 +5,7 @@ import { action } from "@storybook/addon-actions"
 import { GLOBAL_COLOR_LIST } from "../../../data/type"
 import { sColorName } from "@model/type"
 import Select from "./Select"
-
-export const Template = ({ ...props }) => {
-    return <Select {...props} />
-}
+import { SelectProps } from "@model/components/Select"
 
 const ARG_TYPES = {
     onClick: { control: false, defaultValue: action("click!") },
@@ -22,6 +19,10 @@ const PARAMETERS = {
             // Add Props Args(Props)..
         ],
     },
+}
+
+export const Template = ({ ...props }: SelectProps) => {
+    return <Select {...props} />
 }
 
 export default {
