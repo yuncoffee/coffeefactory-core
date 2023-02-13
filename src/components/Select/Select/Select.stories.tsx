@@ -1,4 +1,4 @@
-import React from "react"
+import React, { BaseSyntheticEvent, useState } from "react"
 import { ComponentMeta, ComponentStory } from "@storybook/react"
 import { action } from "@storybook/addon-actions"
 // import { I } from "/model"
@@ -33,9 +33,11 @@ export default {
 } as ComponentMeta<typeof Template>
 
 export const ColorScale: ComponentStory<typeof Select> = ({ ...props }) => {
+    const [showIndex, setShowIndex] = useState(-1)
+
     return (
         <div data-s-box="h-box" data-s-gap="16px" data-s-flexwrap="wrap">
-            {GLOBAL_COLOR_LIST.map((color) => {
+            {GLOBAL_COLOR_LIST.map((color, index) => {
                 let contentColor = color as sColorName
 
                 if (color == "gray" || color == "white") {
@@ -47,13 +49,22 @@ export const ColorScale: ComponentStory<typeof Select> = ({ ...props }) => {
                         data-s-box="v-box"
                         data-s-align="center"
                         data-s-gap="8px"
+                        key={index}
                     >
                         <Select
                             {...props}
                             color={color}
-                            onClick={() => {
-                                console.log("hello world!")
+                            onClick={(event: BaseSyntheticEvent) => {
+                                if (showIndex === index) {
+                                    setShowIndex(-1)
+                                } else {
+                                    setShowIndex(index)
+                                }
+
+                                console.log(showIndex)
                             }}
+                            data-index={index}
+                            showOption={showIndex === index}
                         />
                         <h4 data-s-color={contentColor}>{color}</h4>
                     </div>

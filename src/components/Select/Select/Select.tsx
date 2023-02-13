@@ -24,6 +24,7 @@ const Select = (
         placeholder = "placeholder",
         variant = "box",
         hasLabel = true,
+        showOption,
         ...props
     }: SelectProps,
     ref: ForwardedRef<HTMLDivElement>
@@ -38,7 +39,9 @@ const Select = (
     const [phMargin, setPhMargin] = useState(0)
     const [isFocus, setIsFocus] = useState(false)
     const [hasvalue, setHasValue] = useState(_selectedOption ? true : false)
-    const [showOption, setShowOption] = useState(false)
+    const [_showOption, _setShowOption] = useState(
+        showOption ? showOption : false
+    )
 
     useEffect(() => {
         hasLabel &&
@@ -49,33 +52,15 @@ const Select = (
             )
     }, [name, hasLabel])
 
-    useEffect(() => {}, [_selectedOption])
-
-    const checkHasValue = (event: BaseSyntheticEvent) => {
-        if (event.target.value.length === 0) {
-            setHasValue(false)
-        } else {
-            setHasValue(true)
-        }
-    }
-
-    const onFocus = (event: BaseSyntheticEvent) => {
-        checkHasValue(event)
-        setIsFocus(true)
-        setShowOption(true)
-        props.onFocus && props.onFocus(event as FocusEvent<HTMLDivElement>)
-    }
-
-    const onBlur = (event: BaseSyntheticEvent) => {
-        checkHasValue(event)
-        setIsFocus(false)
-        props.onBlur && props.onBlur(event as FocusEvent<HTMLDivElement>)
-    }
-
     const handleOnClick = (event: BaseSyntheticEvent) => {
-        console.log("hello!")
-        setShowOption(!showOption)
+        // 중복 콜 방지
+        if (event.target.tagName === "I" || event.target.tagName === "LABEL") {
+            return
+        }
         props.onClick && props.onClick(event as MouseEvent<HTMLDivElement>)
+        if (showOption === undefined) {
+            _setShowOption(!_showOption)
+        }
     }
 
     const handleOnClickOption = (event: BaseSyntheticEvent) => {
@@ -86,7 +71,7 @@ const Select = (
                 )[0]
                 _setSelectedOption(selectedOption)
             }
-            setShowOption(false)
+            _setShowOption(false)
         } else {
             console.log("잘못 클릭함")
         }
@@ -94,16 +79,18 @@ const Select = (
 
     return (
         <div
+            {...props}
             data-c-color="gray"
             data-c-size={size}
             data-c-focus={isFocus}
             data-c-variant={variant}
             data-c-hasvalue={hasvalue}
             data-c-haslabel={hasLabel}
-            data-c-showoption={showOption}
+            data-c-showoption={_showOption}
             className={className ? `${s.select} ${className}` : `${s.select}`}
             ref={ref}
-            {...props}
+            id={props.id && `${props.id}-${ID}`}
+            onClick={handleOnClick}
         >
             {hasLabel && (
                 <label
@@ -138,15 +125,23 @@ const Select = (
                 id={props.id ? props.id : ID}
                 className={`${s.select__input}`}
                 value={_selectedOption.name}
-                onClick={handleOnClick}
             />
-            {showOption && (
+            {showOption ? (
                 <Option
                     optionList={optionList}
                     onClick={handleOnClickOption}
                     size={size}
                     variant={variant}
                 />
+            ) : (
+                _showOption === true && (
+                    <Option
+                        optionList={optionList}
+                        onClick={handleOnClickOption}
+                        size={size}
+                        variant={variant}
+                    />
+                )
             )}
         </div>
     )

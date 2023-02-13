@@ -50,7 +50,7 @@ export interface SelectProps
     hasLabel?: boolean
     name?: string
     variant?: "box" | "block" | "round"
-
+    showOption?: boolean
     selectedOption?: OptionItem
     optionList: OptionItem[]
     optionNullDisplayLabel?: string
