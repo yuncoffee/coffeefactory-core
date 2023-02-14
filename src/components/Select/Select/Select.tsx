@@ -54,7 +54,11 @@ const Select = (
 
     const handleOnClick = (event: BaseSyntheticEvent) => {
         // 중복 콜 방지
-        if (event.target.tagName === "I" || event.target.tagName === "LABEL") {
+        if (
+            event.target.tagName === "I" ||
+            event.target.tagName === "LABEL" ||
+            event.target.tagName === "UL"
+        ) {
             return
         }
         props.onClick && props.onClick(event as MouseEvent<HTMLDivElement>)
@@ -71,9 +75,11 @@ const Select = (
                 )[0]
                 _setSelectedOption(selectedOption)
             }
-            _setShowOption(false)
+            // _setShowOption(false)
         } else {
-            console.log("잘못 클릭함")
+            console.error(
+                `${event.target.tagName}이 선택되었을 경우 창을 닫을 수 없습니다.`
+            )
         }
     }
 

@@ -22,7 +22,14 @@ const PARAMETERS = {
 }
 
 export const Template = ({ ...props }: SelectProps) => {
-    return <Select {...props} />
+    return (
+        <Select
+            {...props}
+            onClick={(event) => {
+                console.log(event.target)
+            }}
+        />
+    )
 }
 
 export default {
@@ -55,6 +62,8 @@ export const ColorScale: ComponentStory<typeof Select> = ({ ...props }) => {
                             {...props}
                             color={color}
                             onClick={(event: BaseSyntheticEvent) => {
+                                console.log(event.target)
+
                                 if (showIndex === index) {
                                     setShowIndex(-1)
                                 } else {

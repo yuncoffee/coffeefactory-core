@@ -9,6 +9,7 @@ interface sbArgTypes {
     sb_only_has_option: boolean
     sb_only_width: number
 }
+
 interface sbOptionProps extends OptionProps, sbArgTypes {}
 
 class OptionSbArgTypes extends SbArgTypes implements sbArgTypes {
