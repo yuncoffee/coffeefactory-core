@@ -8,7 +8,7 @@ const Button = (
     {
         buttonName = "button",
         onClick = () => {
-            console.log("helloworld!")
+            console.log("hello world!")
         },
         variant = "block",
         color = "pri",
@@ -47,4 +47,13 @@ const Button = (
     )
 }
 
+/**
+ * - 범용적인 버튼 컴포넌트 입니다.
+
+ * @example
+ * ```
+ *
+ *  <Button onClick={handleAction()}/>
+ * ```
+ */
 export default forwardRef(Button)

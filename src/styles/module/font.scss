@@ -1,15 +1,13 @@
 @use "../mixin/mixin";
 @use "../var/var";
 
-@each $key,
-$value in var.$fontList {
+@each $key, $value in var.$fontList {
     [data-s-font="#{$key}"] {
         @include mixin.fontFactory($value);
     }
 }
 
-@each $key,
-$value in var.$headingList {
+@each $key, $value in var.$headingList {
     #{$key} {
         @include mixin.fontFactory($value);
     }

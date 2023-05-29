@@ -16,7 +16,6 @@
 
     100% {
         font-variation-settings: "wght" 100;
-
     }
 }
 
@@ -31,42 +30,31 @@
 }
 
 :root {
-
-    @each $name,
-    $value in var.$sizeList {
+    @each $name, $value in var.$sizeList {
         --#{$name}: #{$value};
     }
 
-    @each $name,
-    $value in var.$pxBorderWeightList {
+    @each $name, $value in var.$pxBorderWeightList {
         --border-weight-#{$name}: #{$value};
     }
 
-    @each $name,
-    $value in var.$radiusList {
+    @each $name, $value in var.$radiusList {
         --radius-#{$name}: #{$value};
     }
 
-    @each $name,
-    $value in var.$transitionList {
+    @each $name, $value in var.$transitionList {
         --transition-#{$name}: #{$value};
     }
 
-    @each $colorName,
-    $map in var.$globalColorMapList {
-
-        @each $colorType,
-        $value in $map {
+    @each $colorName, $map in var.$globalColorMapList {
+        @each $colorType, $value in $map {
             --#{$colorName}-#{$colorType}: #{$value};
         }
     }
 
-    @each $colorName,
-    $value in var.$globalGrayMapList {
-        --#{$colorName}: #{$value}
+    @each $colorName, $value in var.$globalGrayMapList {
+        --#{$colorName}: #{$value};
     }
 
-    --focus-base: 1,
-    102,
-    255;
+    --focus-base: 1, 102, 255;
 }

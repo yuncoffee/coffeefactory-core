@@ -1,9 +1,6 @@
 @use "../var/var";
 
-
-@each $colorName,
-$map in var.$globalColorMapList {
-
+@each $colorName, $map in var.$globalColorMapList {
     [data-s-color="#{$colorName}"] {
         color: rgba(var(--#{$colorName}-base), 1);
     }
@@ -12,14 +9,12 @@ $map in var.$globalColorMapList {
         background-color: rgba(var(--#{$colorName}-base), 1);
     }
 
-    [data-s-bordercolor=#{$colorName}] {
+    [data-s-bordercolor="#{$colorName}"] {
         border-color: rgba(var(--#{$colorName}-base), 1);
     }
-
 }
 
-@each $colorName,
-$value in var.$globalGrayMapList {
+@each $colorName, $value in var.$globalGrayMapList {
     [data-s-color="#{$colorName}"] {
         color: rgba(var(--#{$colorName}), 1);
     }
